@@ -1,0 +1,34 @@
+{
+    "[python]": {
+        "editor.rulers": [
+            100,
+            120
+        ],
+        "editor.tabSize": 4
+    },
+    "[markdown]": {
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.rulers": [
+            100,
+            120
+        ],
+        "editor.tabSize": 2
+    },
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.eggs": true,
+        "**/.git": true,
+        "**/.pytest_cache": true,
+        "**/*.egg-info": true
+    },
+    "files.insertFinalNewline": true,
+    "cSpell.enableFiletypes": [
+        "python",
+        "markdown"
+    ],
+    "cSpell.ignoreWords": [
+        "derl"
+    ],
+}
