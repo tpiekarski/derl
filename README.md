@@ -53,4 +53,10 @@ files:
 ## Note
 
 This project has been set up using PyScaffold 3.2.3. For details and usage
-information on PyScaffold see <https://pyscaffold.org/>.
+information on PyScaffold see [https://pyscaffold.org/](https://pyscaffold.org/).
+
+## References
+
+- [Learn Python in 60 Minutes from Java](https://www.youtube.com/watch?v=xLovcfIugy8)
+- [Python Primer for Java Developers](https://lobster1234.github.io/2017/05/25/python-java-primer/)
+- [The Python Tutorial](https://docs.python.org/3.7/tutorial/index.html)
