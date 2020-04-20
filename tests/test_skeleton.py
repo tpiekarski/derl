@@ -8,5 +8,5 @@ __copyright__ = "Thomas Piekarski"
 __license__ = "mit"
 
 
-def test_fib():
+def test_sb():
     assert sb() == "Hello"
