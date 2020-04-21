@@ -18,64 +18,51 @@ def sb():
 
 
 def parse_args(args):
-    """Parse command line parameters
-
-    Args:
-      args ([str]): command line parameters as list of strings
-
-    Returns:
-      :obj:`argparse.Namespace`: command line parameters namespace
-    """
-    parser = argparse.ArgumentParser(
-        description="Death URL searching utility")
+    parser = argparse.ArgumentParser(description="Death URL searching utility")
     parser.add_argument(
         "--version",
         action="version",
-        version="derl {ver}".format(ver=__version__))
+        version="derl {ver}".format(ver=__version__)
+    )
     parser.add_argument(
         "-v",
         "--verbose",
+        action="store_const",
+        const=logging.INFO,
         dest="loglevel",
         help="set loglevel to INFO",
-        action="store_const",
-        const=logging.INFO)
+    )
     parser.add_argument(
         "-vv",
         "--very-verbose",
-        dest="loglevel",
-        help="set loglevel to DEBUG",
         action="store_const",
-        const=logging.DEBUG)
+        const=logging.DEBUG,
+        dest="loglevel",
+        help="set loglevel to DEBUG"
+    )
     return parser.parse_args(args)
 
 
 def setup_logging(loglevel):
-    """Setup basic logging
-
-    Args:
-      loglevel (int): minimum loglevel for emitting messages
-    """
     logformat = "[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
-    logging.basicConfig(level=loglevel, stream=sys.stdout,
-                        format=logformat, datefmt="%Y-%m-%d %H:%M:%S")
+    logging.basicConfig(
+        datefmt="%Y-%m-%d %H:%M:%S",
+        format=logformat,
+        level=loglevel,
+        stream=sys.stdout
+    )
 
 
 def main(args):
-    """Main entry point allowing external calls
-
-    Args:
-      args ([str]): command line parameter list
-    """
     args = parse_args(args)
     setup_logging(args.loglevel)
-    _logger.debug("Starting...")
 
-    _logger.info("Ending...")
+    # Example usage of the logger and its different levels
+    # _logger.debug("Starting...")
+    # _logger.info("Ending...")
 
 
 def run():
-    """Entry point for console_scripts
-    """
     main(sys.argv[1:])
 
 
