@@ -19,8 +19,7 @@ def parse_args(args):
         action="store",  # default behavior
         dest="directory",
         help="directory for looking for dead URLs",
-        metavar="directory",
-        nargs=1
+        metavar="directory"
     )
     parser.add_argument(
         "--version",
