@@ -13,12 +13,15 @@ __license__ = "mit"
 _logger = logging.getLogger(__name__)
 
 
-def sb():
-    return "Hello"
-
-
 def parse_args(args):
-    parser = argparse.ArgumentParser(description="Death URL searching utility")
+    parser = argparse.ArgumentParser(description="Dead URL searching utility")
+    parser.add_argument(
+        action="store",  # default behavior
+        dest="directory",
+        help="directory for looking for dead URLs",
+        metavar="directory",
+        nargs=1
+    )
     parser.add_argument(
         "--version",
         action="version",
@@ -40,6 +43,7 @@ def parse_args(args):
         dest="loglevel",
         help="set loglevel to DEBUG"
     )
+
     return parser.parse_args(args)
 
 
@@ -53,6 +57,24 @@ def setup_logging(loglevel):
     )
 
 
+def check_directory(directory):
+    _logger.info("Checking provided directory {}".format(directory))
+
+    # todo: check if directory exists and is readable
+
+    return True
+
+
+def process_directory(directory):
+    _logger.info("Starting to process directory {}".format(directory))
+
+    files = []
+
+    # todo: iterate and gather all files inside the directory
+
+    return files
+
+
 def main(args):
     args = parse_args(args)
     setup_logging(args.loglevel)
@@ -60,6 +82,12 @@ def main(args):
     # Example usage of the logger and its different levels
     # _logger.debug("Starting...")
     # _logger.info("Ending...")
+
+    if (not check_directory(args.directory)):
+        _logger.error("Invalid directory provided, aborting.")
+        sys.exit(-1)
+
+    files = process_directory(args.directory)
 
 
 def run():
