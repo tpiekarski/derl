@@ -23,4 +23,4 @@ def test_check_directory():
 
 
 def test_process_directory():
-    assert process_directory(_TEST_DIRECTORY) == []
+    assert len(process_directory(_TEST_DIRECTORY)) == 1

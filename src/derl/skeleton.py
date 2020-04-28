@@ -59,7 +59,7 @@ def setup_logging(loglevel):
 
 
 def check_directory(directory):
-    _logger.debug("Checking provided directory {}".format(directory))
+    _logger.info("Checking provided directory {}".format(directory))
 
     return os.path.isdir(directory)
 
