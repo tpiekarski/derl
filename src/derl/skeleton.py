@@ -5,6 +5,7 @@ import sys
 import logging
 
 from derl import __version__
+from derl.processor import process_directory
 
 __author__ = "Thomas Piekarski"
 __copyright__ = "Thomas Piekarski"
@@ -62,16 +63,6 @@ def check_directory(directory):
     # todo: check if directory exists and is readable
 
     return True
-
-
-def process_directory(directory):
-    _logger.info("Starting to process directory {}".format(directory))
-
-    files = []
-
-    # todo: iterate and gather all files inside the directory
-
-    return files
 
 
 def main(args):
