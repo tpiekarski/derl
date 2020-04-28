@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import sys
 import logging
+import os
+import sys
 
 from derl import __version__
 from derl.processor import process_directory
@@ -60,9 +61,7 @@ def setup_logging(loglevel):
 def check_directory(directory):
     _logger.debug("Checking provided directory {}".format(directory))
 
-    # todo: check if directory exists and is readable
-
-    return True
+    return os.path.isdir(directory)
 
 
 def main(args):
@@ -70,7 +69,8 @@ def main(args):
     setup_logging(args.loglevel)
 
     if (not check_directory(args.directory)):
-        _logger.error("Invalid directory provided, aborting.")
+        _logger.error(
+            "Cannot access '{}': No such directory".format(args.directory))
         sys.exit(-1)
 
     files = process_directory(args.directory)
