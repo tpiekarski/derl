@@ -58,7 +58,7 @@ def setup_logging(loglevel):
 
 
 def check_directory(directory):
-    _logger.info("Checking provided directory {}".format(directory))
+    _logger.debug("Checking provided directory {}".format(directory))
 
     # todo: check if directory exists and is readable
 
@@ -68,10 +68,6 @@ def check_directory(directory):
 def main(args):
     args = parse_args(args)
     setup_logging(args.loglevel)
-
-    # Example usage of the logger and its different levels
-    # _logger.debug("Starting...")
-    # _logger.info("Ending...")
 
     if (not check_directory(args.directory)):
         _logger.error("Invalid directory provided, aborting.")

@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 
 def process_directory(directory):
-    _logger.info("Starting to process directory {}".format(directory))
+    _logger.debug("Starting to process directory {}".format(directory))
 
     files = []
 
