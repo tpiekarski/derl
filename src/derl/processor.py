@@ -8,20 +8,20 @@ _logger = logging.getLogger(__name__)
 
 
 def process_directory(directory):
-    _logger.info("Starting to process directory '{}'".format(directory))
+    _logger.info("Starting to process directory '%s'", directory)
 
     files = []
 
     try:
         path = Path(directory)
-        for p in path.iterdir():
-            if (p.is_file()):
-                files.append(p)
+        for current in path.iterdir():
+            if current.is_file():
+                files.append(current)
 
         _logger.info("Finished processing directory")
-        _logger.info("Found {} files in '{}'".format(len(files), directory))
+        _logger.info("Found %i files in '%s'", len(files), directory)
         _logger.debug(files)
     except FileNotFoundError:
-        _logger.error("Cannot access '{}': No such directory".format(directory))
+        _logger.error("Cannot access '%s': No such directory", directory)
 
     return files
