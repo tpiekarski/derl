@@ -15,6 +15,7 @@ def process_directory(directory):
     try:
         path = Path(directory)
         for current in path.iterdir():
+            # todo: introduce recursive call to gather also files from sub directories
             if current.is_file():
                 files.append(current)
 

@@ -7,6 +7,7 @@ import sys
 
 from derl import __version__
 from derl.processor import process_directory
+from derl.searcher import search_urls
 
 __author__ = "Thomas Piekarski"
 __copyright__ = "Thomas Piekarski"
@@ -73,6 +74,7 @@ def main(args):
         sys.exit(-1)
 
     files = process_directory(args.directory)
+    search_urls(files)
 
 
 def run():
