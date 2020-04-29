@@ -69,8 +69,7 @@ def main(args):
     setup_logging(args.loglevel)
 
     if (not check_directory(args.directory)):
-        _logger.error(
-            "Cannot access '{}': No such directory".format(args.directory))
+        _logger.error("Cannot access '{}': No such directory".format(args.directory))
         sys.exit(-1)
 
     files = process_directory(args.directory)

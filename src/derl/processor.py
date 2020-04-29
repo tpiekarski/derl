@@ -11,14 +11,17 @@ def process_directory(directory):
     _logger.info("Starting to process directory '{}'".format(directory))
 
     files = []
-    path = Path(directory)
 
-    for p in path.iterdir():
-        if (p.is_file()):
-            files.append(p)
+    try:
+        path = Path(directory)
+        for p in path.iterdir():
+            if (p.is_file()):
+                files.append(p)
 
-    _logger.info("Finished processing directory")
-    _logger.info("Found {} files in '{}'".format(len(files), directory))
-    _logger.debug(files)
+        _logger.info("Finished processing directory")
+        _logger.info("Found {} files in '{}'".format(len(files), directory))
+        _logger.debug(files)
+    except FileNotFoundError:
+        _logger.error("Cannot access '{}': No such directory".format(directory))
 
     return files

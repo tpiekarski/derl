@@ -18,9 +18,10 @@ def test_parse_directory():
 
 
 def test_check_directory():
-    assert check_directory(_TEST_DIRECTORY) == True
-    assert check_directory("non-existend-directory") == False
+    assert check_directory(_TEST_DIRECTORY)
+    assert not check_directory("not-existing-directory")
 
 
 def test_process_directory():
     assert len(process_directory(_TEST_DIRECTORY)) == 1
+    assert len(process_directory("not-existing-directory")) == 0
