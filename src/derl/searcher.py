@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import logging
+import re
 
 _logger = logging.getLogger(__name__)
+_pattern = re.compile("^(http|https):\/\/.*", re.IGNORECASE)
 
 
 def search_urls(files):
@@ -14,8 +16,17 @@ def search_urls(files):
 
     for current_entry in files:
         with open(current_entry, "r") as current_file:
-            lines = current_file.readlines()
-            for current_line in lines:
-                _logger.debug(current_line)
 
-                # todo: implement searching for URLs
+            _logger.debug("Spliting file %s into lines...", current_file.name)
+            lines = current_file.readlines()
+            _logger.debug("Found %i lines", len(lines))
+
+            for current_line in lines:
+                _logger.debug("Splitting current line into tokens...")
+                tokens = current_line.split()
+                _logger.debug("Found %i tokens", len(tokens))
+
+                for current_token in tokens:
+                    match = _pattern.match(current_token)
+                    if match:
+                        _logger.info("Found a match (%s) in file '%s'", match.string, current_file.name)
