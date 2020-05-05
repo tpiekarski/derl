@@ -23,5 +23,5 @@ def test_check_directory():
 
 
 def test_process_directory():
-    assert len(process_directory(_TEST_DIRECTORY)) == 2
-    assert len(process_directory("not-existing-directory")) == 0
+    assert len(process_directory(_TEST_DIRECTORY, [])) == 4
+    assert len(process_directory("not-existing-directory", [])) == 0

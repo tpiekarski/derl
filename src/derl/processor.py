@@ -44,19 +44,23 @@ def process_token(file, token):
         _logger.info("Found a match (%s) in file '%s'", match.string, file.name)
 
 
-def process_directory(directory):
+def process_directory(directory, files=[]):
     _logger.info("Starting to process directory '%s'", directory)
-
-    files = []
 
     try:
         path = Path(directory)
         for current in path.iterdir():
-            # todo: introduce recursive call to gather also files from sub directories
             if current.is_file():
+                _logger.debug("Appending file '%s'", current.name)
                 files.append(current)
+            elif current.is_dir():
+                _logger.debug("'%s' is a directory, descending...", current.name)
+                files = process_directory(current, files)
+            else:
+                _logger.debug("Skipping not regular file or directory")
+                continue
 
-        _logger.info("Finished processing directory")
+        _logger.info("Finished processing directory '%s'", directory)
         _logger.info("Found %i files in '%s'", len(files), directory)
         _logger.debug(files)
     except FileNotFoundError:
