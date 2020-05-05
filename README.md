@@ -50,6 +50,20 @@ files:
       -- line_number
 ```
 
+## Test directory structure
+
+``txt
+test-directory/
+├── dir-1
+│   ├── dir-2
+│   │   └── test-4-dir-2.txt
+│   └── test-3-dir-1.txt
+├── test-1-dir-0.txt
+└── test-2-dir-0.txt
+
+2 directories, 4 files
+```
+
 ## Note
 
 This project has been set up using PyScaffold 3.2.3. For details and usage
