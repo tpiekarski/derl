@@ -2,6 +2,8 @@
 
 import requests
 
+_DEFAULT_TIMEOUT = 1
+
 
 class URL:
     url = None
@@ -17,6 +19,6 @@ class URL:
         return "{}, {}".format(self.url, self.status_code)
 
     def get_status_code(self, url):
-        # request = requests.get(url)
-        # return request.status_code
-        return 0
+        request = requests.get(url, timeout=_DEFAULT_TIMEOUT)
+
+        return request.status_code

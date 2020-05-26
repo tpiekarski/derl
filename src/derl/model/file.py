@@ -12,8 +12,10 @@ class File:
         self.urls = []
 
     def __str__(self):
+        output_urls = ""
+
         for current_url in self.urls:
-            output_urls = "%s" % (current_url)
+            output_urls += "\n - %s" % (current_url)
 
         return "{}:{}".format(self.filename, output_urls)
 
