@@ -75,7 +75,7 @@ def main(args):
         _logger.error("Cannot access '%s': No such directory", args.directory)
         sys.exit(-1)
 
-    matches = search_urls(process_directory(args.directory))
+    matches = search_urls(process_directory(args.directory, []))
     output(request(matches))
 
 

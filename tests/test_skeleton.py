@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import pytest
 from derl.skeleton import check_directory, process_directory, parse_args
 
 __author__ = "Thomas Piekarski"

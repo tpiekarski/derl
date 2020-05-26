@@ -3,9 +3,10 @@
 import logging
 import re
 
+from pathlib import Path
 from derl.model.file import File
 from derl.model.url import URL
-from pathlib import Path
+
 
 _logger = logging.getLogger(__name__)
 _pattern = re.compile(r"^(http|https):\/\/.*$", re.IGNORECASE)
@@ -58,7 +59,7 @@ def process_token(file, token):
     return url
 
 
-def process_directory(directory, files=[]):
+def process_directory(directory, files):
     _logger.info("Starting to process directory '%s'", directory)
 
     try:
