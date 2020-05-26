@@ -6,6 +6,7 @@ import os
 import sys
 
 from derl import __version__
+from derl.dispatcher import request
 from derl.outputer import output
 from derl.processor import process_directory
 from derl.searcher import search_urls
@@ -74,7 +75,8 @@ def main(args):
         _logger.error("Cannot access '%s': No such directory", args.directory)
         sys.exit(-1)
 
-    output(search_urls(process_directory(args.directory)))
+    matches = search_urls(process_directory(args.directory))
+    output(request(matches))
 
 
 def run():
