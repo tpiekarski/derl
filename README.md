@@ -31,23 +31,32 @@ output in a formatted way.
 ### Data structure
 
 ```txt
-files:
-  -- filename
-  -- relative path
-  -- urls
-    -- (0)
-      -- url
-      -- response
-      -- line_number
-    -- (1)
-      -- url
-      -- response
-      -- line_number
-    ...
-    -- (n)
-      -- url
-      -- response
-      -- line_number
+files: [
+  {
+    filename,
+    relative path,
+    urls: [
+      (0): {
+        url,
+        response,
+        line_number
+      },
+      (1): {
+        url,
+        response,
+        line_number
+      },
+
+      ...
+      
+      (n): {
+        url,
+        response,
+        line_number
+      }
+    ]
+  }
+]
 ```
 
 ## Test directory structure
