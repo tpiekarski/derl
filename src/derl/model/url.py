@@ -14,5 +14,6 @@ class URL:
         self.status_code = self.get_status_code(url)
 
     def get_status_code(self, url):
-        request = requests.get(url)
-        return request.status_code
+        # request = requests.get(url)
+        # return request.status_code
+        return 0

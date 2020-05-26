@@ -15,5 +15,9 @@ def search_urls(files):
         return
 
     for current_entry in files:
-        with open(current_entry, "r") as current_file:
-            process_file(current_file)
+        with open(current_entry.filename, "r") as current_file:
+            current_entry.urls = process_file(current_file)
+
+    _logger.debug("Searched %i files", len(files))
+
+    return files

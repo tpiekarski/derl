@@ -5,12 +5,10 @@ from derl.model.url import URL
 
 class File:
     filename = None
-    path = None
     urls: None
 
-    def __init__(self, filename, path):
+    def __init__(self, filename):
         self.filename = filename
-        self.path = path
         self.urls = []
 
     def append(self, url, line_number):
