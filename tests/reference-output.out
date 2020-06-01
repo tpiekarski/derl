@@ -1,0 +1,11 @@
+tests/test-directory/dir-1/test-3-dir-1.txt:
+ - http://www.google.de/test, 404
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:
+ - http://www.python.org/, 200
+ - http://docs.python.org/something, 404
+tests/test-directory/test-2-dir-0.txt:
+ - https://www.amazon.co.uk, 503
+ - http://www.dlqx.de/test, 404
+tests/test-directory/test-1-dir-0.txt:
+ - https://www.github.com/, 200
+ - https://www.bing.com, 200

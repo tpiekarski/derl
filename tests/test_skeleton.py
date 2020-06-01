@@ -31,6 +31,6 @@ class SkeletonTest(TestCase):
 
     def test_main(self):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:
-            with open("tests/reference-output.log", "r") as reference:
+            with open("tests/reference-output.out", "r") as reference:
                 main([_TEST_DIRECTORY])
                 self.assertEqual(fake_stdout.getvalue(), reference.read())
