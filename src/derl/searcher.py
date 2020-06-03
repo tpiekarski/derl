@@ -12,7 +12,7 @@ def search_urls(files):
 
     if len(files) == 0:
         _logger.info("No files found, skipping search")
-        return
+        return []
 
     for current_entry in files:
         with open(current_entry.filename, "r") as current_file:

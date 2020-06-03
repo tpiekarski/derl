@@ -19,7 +19,7 @@ def process_file(file):
 
     if len(lines) == 0:
         _logger.debug("No lines found, skipping file '%s'", file.name)
-        return
+        return urls
 
     _logger.debug("Found %i lines", len(lines))
 
@@ -35,7 +35,7 @@ def process_line(file, line, urls):
 
     if len(tokens) == 0:
         _logger.debug("No tokens found, skipping line")
-        return
+        return urls
 
     _logger.debug("Found %i tokens", len(tokens))
 
