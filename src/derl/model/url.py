@@ -11,3 +11,6 @@ class URL:
 
     def __str__(self):
         return "{}, {}".format(self.url, self.status_code)
+
+    def __repr__(self):
+        return self.__str__()

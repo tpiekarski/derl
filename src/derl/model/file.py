@@ -19,5 +19,8 @@ class File:
 
         return "{}:{}".format(self.filename, output_urls)
 
+    def __repr__(self):
+        return self.__str__()
+
     def append(self, url, line_number):
         self.urls.append(URL(url, line_number))
