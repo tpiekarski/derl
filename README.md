@@ -7,6 +7,8 @@
 ```sh
 python setup.py test
 python setup.py develop --user
+
+derl tests/test-directory/
 ```
 
 ## Usage
@@ -65,7 +67,7 @@ files: [
       },
 
       ...
-      
+
       (n): {
         url,
         response,
@@ -101,6 +103,6 @@ test-directory/
 - [PyScaffold](https://pyscaffold.org/)
 - [Python Primer for Java Developers](https://lobster1234.github.io/2017/05/25/python-java-primer/)
 - [re - Regular expression operations¶](https://docs.python.org/3/library/re.html)
-- [Requests for humands, Quickstart](https://requests.readthedocs.io/en/master/user/quickstart/)
+- [Requests for humans, Quickstart](https://requests.readthedocs.io/en/master/user/quickstart/)
 - [Testing Output to stdout](https://www.geeksforgeeks.org/python-testing-output-to-stdout/)
 - [The Python Tutorial](https://docs.python.org/3.7/tutorial/index.html)

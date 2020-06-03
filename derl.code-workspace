@@ -6,8 +6,12 @@
     ],
     "settings": {
         "cSpell.words": [
+            "Pylint",
+            "Quickstart",
             "datefmt",
-            "outputer"
+            "loglevel",
+            "outputer",
+            "pathlib"
         ]
     }
 }
