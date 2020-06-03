@@ -81,4 +81,6 @@ def process_directory(directory, files):
     except FileNotFoundError:
         _logger.error("Cannot access '%s': No such directory", directory)
 
+    files.sort(key=lambda file: file.filename)
+
     return files

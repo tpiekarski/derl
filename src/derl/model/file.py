@@ -5,7 +5,7 @@ from derl.model.url import URL
 
 class File:
     filename = None
-    urls: None
+    urls: []
 
     def __init__(self, filename):
         self.filename = filename
