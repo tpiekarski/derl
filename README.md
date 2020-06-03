@@ -9,6 +9,23 @@ python setup.py test
 python setup.py develop --user
 ```
 
+## Usage
+
+```sh
+usage: derl [-h] [--version] [-v] [-vv] directory
+
+Dead URL searching utility
+
+positional arguments:
+  directory            directory for looking for dead URLs
+
+optional arguments:
+  -h, --help           show this help message and exit
+  --version            show program's version number and exit
+  -v, --verbose        set loglevel to INFO
+  -vv, --very-verbose  set loglevel to DEBUG
+```
+
 ## Concept
 
 ### Description
@@ -61,7 +78,7 @@ files: [
 
 ## Test directory structure
 
-``txt
+```txt
 test-directory/
 ├── dir-1
 │   ├── dir-2
@@ -73,13 +90,17 @@ test-directory/
 2 directories, 4 files
 ```
 
-## Note
-
-This project has been set up using PyScaffold 3.2.3. For details and usage
-information on PyScaffold see [https://pyscaffold.org/](https://pyscaffold.org/).
-
 ## References
 
+- [A Beginner’s Guide to Code Standards in Python - Pylint Tutorial](https://docs.pylint.org/en/1.6.0/tutorial.html)
+- [Basic customization to data models](https://docs.python.org/3/reference/datamodel.html#customization)
+- [How To Use String Formatters in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-string-formatters-in-python-3)
+- [HTTP Requests in Python 3](https://www.twilio.com/blog/2016/12/http-requests-in-python-3.html)
 - [Learn Python in 60 Minutes from Java](https://www.youtube.com/watch?v=xLovcfIugy8)
+- [pathlib — Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
+- [PyScaffold](https://pyscaffold.org/)
 - [Python Primer for Java Developers](https://lobster1234.github.io/2017/05/25/python-java-primer/)
+- [re - Regular expression operations¶](https://docs.python.org/3/library/re.html)
+- [Requests for humands, Quickstart](https://requests.readthedocs.io/en/master/user/quickstart/)
+- [Testing Output to stdout](https://www.geeksforgeeks.org/python-testing-output-to-stdout/)
 - [The Python Tutorial](https://docs.python.org/3.7/tutorial/index.html)
