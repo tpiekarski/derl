@@ -1,11 +1,11 @@
 tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:
- - #1: http://www.python.org/, 200
- - #4: http://docs.python.org/something, 404
+ - #1: 200, http://www.python.org/
+ - #4: 404, http://docs.python.org/something
 tests/test-directory/dir-1/test-3-dir-1.txt:
- - #3: http://www.google.de/test, 404
+ - #3: 404, http://www.google.de/test
 tests/test-directory/test-1-dir-0.txt:
- - #2: https://www.github.com/, 200
- - #5: https://www.bing.com, 200
+ - #2: 200, https://www.github.com/
+ - #5: 200, https://www.bing.com
 tests/test-directory/test-2-dir-0.txt:
- - #1: https://www.amazon.co.uk, 503
- - #3: http://www.dlqx.de/test, 404
+ - #1: 503, https://www.amazon.co.uk
+ - #3: 404, http://www.dlqx.de/test

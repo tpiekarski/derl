@@ -10,7 +10,12 @@ class URL:
         self.line_number = line_number
 
     def __str__(self):
-        return "#{}: {}, {}".format(self.line_number, self.url, self.status_code)
+        if self.status_code is None:
+            format_string = "#{}: {}".format(self.line_number, self.url)
+        else:
+            format_string = "#{}: {}, {}".format(self.line_number, self.status_code, self.url)
+
+        return format_string
 
     def __repr__(self):
         return self.__str__()
