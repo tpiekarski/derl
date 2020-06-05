@@ -15,6 +15,13 @@ def parse_args(args):
         metavar="directory"
     )
     parser.add_argument(
+        "-d",
+        "--dispatch",
+        action="store_true",
+        dest="dispatch",
+        help="dispatching HTTP requests for every found URL"
+    )
+    parser.add_argument(
         "--version",
         action="version",
         version="derl {ver}".format(ver=__version__)

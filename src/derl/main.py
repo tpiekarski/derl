@@ -43,7 +43,11 @@ def main(args):
 
     processed_directories = process_directory(args.directory, [])
     matched_files = search_urls(processed_directories)
-    output(request(matched_files))
+
+    if args.dispatch:
+        output(request(matched_files))
+    else:
+        output(matched_files)
 
 
 def run():

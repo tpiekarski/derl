@@ -9,6 +9,7 @@
             "Programiz",
             "Pylint",
             "Quickstart",
+            "argparse",
             "datefmt",
             "loglevel",
             "outputer",

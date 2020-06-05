@@ -29,8 +29,14 @@ class MainTest(TestCase):
         self.assertEqual(len(process_directory(_TEST_DIRECTORY, [])), 4)
         self.assertEqual(len(process_directory("not-existing-directory", [])), 0)
 
-    def test_main(self):
+    def _reference_testing(self, arguments, reference):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:
-            with open("tests/reference-output.out", "r") as reference:
-                main([_TEST_DIRECTORY])
+            with open(reference, "r") as reference:
+                main(arguments)
                 self.assertEqual(fake_stdout.getvalue(), reference.read())
+
+    def test_main_without_dispatch(self):
+        self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-dispatch.out")
+
+    def test_main_with_dispatch(self):
+        self._reference_testing(["--dispatch", _TEST_DIRECTORY], "tests/references/output-with-dispatch.out")

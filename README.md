@@ -8,13 +8,13 @@
 python setup.py test
 python setup.py develop --user
 
-derl tests/test-directory/
+derl --dispatch tests/test-directory/
 ```
 
 ## Usage
 
-```sh
-usage: derl [-h] [--version] [-v] [-vv] directory
+```txt
+derl [-h] [-d] [--version] [-v] [-vv] directory
 
 Dead URL searching utility
 
@@ -23,6 +23,7 @@ positional arguments:
 
 optional arguments:
   -h, --help           show this help message and exit
+  -d, --dispatch       dispatching HTTP requests for every found URL
   --version            show program's version number and exit
   -v, --verbose        set loglevel to INFO
   -vv, --very-verbose  set loglevel to DEBUG
@@ -105,6 +106,7 @@ test-directory/
 - Programiz, [Python Tuple](https://www.programiz.com/python-programming/tuple)
 - Pylint Tutorial, [A Beginner’s Guide to Code Standards in Python](https://docs.pylint.org/en/1.6.0/tutorial.html)
 - Python HOW TOS, [Sorting HOW TO](https://docs.python.org/3/howto/sorting.html)
+- Python Reference, [argparse — Parser for command-line options, arguments and sub-commands](https://docs.python.org/3/library/argparse.html#action)
 - Python Reference, [Basic customization to data models](https://docs.python.org/3/reference/datamodel.html#customization)
 - Python Reference, [pathlib — Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
 - Python Reference, [re - Regular expression operations¶](https://docs.python.org/3/library/re.html)
