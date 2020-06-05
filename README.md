@@ -29,6 +29,12 @@ optional arguments:
   -vv, --very-verbose  set loglevel to DEBUG
 ```
 
+## Linting
+
+```sh
+pylint src/derl/* && pylint tests/*.py
+```
+
 ## Concept
 
 ### Description
