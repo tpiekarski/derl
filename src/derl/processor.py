@@ -8,13 +8,15 @@ from derl.model.file import File
 from derl.model.url import URL
 
 
+_STARTING_LINE_NUMBER = 1
+
 _logger = logging.getLogger(__name__)
 _pattern = re.compile(r"^(http|https):\/\/.*$", re.IGNORECASE)
 
 
 def process_file(file):
     _logger.debug("Spliting current file %s into lines...", file.name)
-    lines = file.readlines()
+    lines = list(enumerate(file.readlines(), _STARTING_LINE_NUMBER))
     urls = []
 
     if len(lines) == 0:
@@ -31,7 +33,8 @@ def process_file(file):
 
 def process_line(file, line, urls):
     _logger.debug("Splitting current line into tokens...")
-    tokens = line.split()
+    line_number, line_content = line
+    tokens = line_content.split()
 
     if len(tokens) == 0:
         _logger.debug("No tokens found, skipping line")
@@ -40,7 +43,7 @@ def process_line(file, line, urls):
     _logger.debug("Found %i tokens", len(tokens))
 
     for current_token in tokens:
-        url = process_token(file, current_token)
+        url = process_token(file, current_token, line_number)
 
         if url is not None:
             urls.append(url)
@@ -48,13 +51,13 @@ def process_line(file, line, urls):
     return urls
 
 
-def process_token(file, token):
+def process_token(file, token, line_number):
     match = _pattern.match(token)
     url = None
 
     if match:
         _logger.info("Found a match (%s) in file '%s'", match.string, file.name)
-        url = URL(match.string, 0)
+        url = URL(match.string, line_number)
 
     return url
 
