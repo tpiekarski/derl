@@ -31,9 +31,9 @@ class MainTest(TestCase):
 
     def _reference_testing(self, arguments, reference):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:
-            with open(reference, "r") as reference:
+            with open(reference, "r") as opened_reference:
                 main(arguments)
-                self.assertEqual(fake_stdout.getvalue(), reference.read())
+                self.assertEqual(fake_stdout.getvalue(), opened_reference.read())
 
     def test_main_without_dispatch(self):
         self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-dispatch.out")
