@@ -16,7 +16,13 @@ _pattern = re.compile(r"^(http|https):\/\/.*$", re.IGNORECASE)
 
 def process_file(file):
     _logger.debug("Spliting current file %s into lines...", file.name)
-    lines = list(enumerate(file.readlines(), _STARTING_LINE_NUMBER))
+
+    try:
+        lines = list(enumerate(file.readlines(), _STARTING_LINE_NUMBER))
+    except UnicodeDecodeError:
+        _logger.error("Failed to read line of file %s, skipping file", file.name)
+        return []
+
     urls = []
 
     if len(lines) == 0:

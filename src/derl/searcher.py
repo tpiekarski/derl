@@ -6,6 +6,8 @@ from derl.processor import process_file
 
 _logger = logging.getLogger(__name__)
 
+_DEFAULT_ENCODING = "utf-8"
+
 
 def search_urls(files):
     _logger.info("Starting to search for URLs in %i files...", len(files))
@@ -15,7 +17,7 @@ def search_urls(files):
         return []
 
     for current_entry in files:
-        with open(current_entry.filename, "r") as current_file:
+        with open(current_entry.filename, "r", encoding=_DEFAULT_ENCODING) as current_file:
             current_entry.urls = process_file(current_file)
 
     _logger.debug("Searched %i files", len(files))
