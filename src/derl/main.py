@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import logging
-import os
 import sys
 
+from derl.checker import check_directory
 from derl.dispatcher import request
 from derl.outputer import output
 from derl.parser import parse_args
@@ -25,12 +25,6 @@ def setup_logging(loglevel):
         level=loglevel,
         stream=sys.stdout
     )
-
-
-def check_directory(directory):
-    _logger.info("Checking provided directory %s", directory)
-
-    return os.path.isdir(directory)
 
 
 def main(args):
