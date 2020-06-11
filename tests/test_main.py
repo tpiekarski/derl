@@ -6,10 +6,6 @@ from io import StringIO
 
 from derl.main import check_directory, main, process_directory, parse_args
 
-__author__ = "Thomas Piekarski"
-__copyright__ = "Thomas Piekarski"
-__license__ = "mit"
-
 _TEST_DIRECTORY = "tests/test-directory"
 
 
