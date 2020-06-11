@@ -14,6 +14,7 @@
             "loglevel",
             "outputer",
             "pathlib"
-        ]
+        ],
+        "python.pythonPath": "/usr/bin/python3"
     }
 }

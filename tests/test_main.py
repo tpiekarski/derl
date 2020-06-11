@@ -4,16 +4,12 @@ from unittest import TestCase
 from unittest.mock import patch
 from io import StringIO
 
-from derl.main import check_directory, main
+from derl.main import is_directory, main
 
 _TEST_DIRECTORY = "tests/test-directory"
 
 
 class MainTest(TestCase):
-
-    def test_check_directory(self):
-        self.assertTrue(check_directory(_TEST_DIRECTORY))
-        self.assertFalse(check_directory("not-existing-directory"))
 
     def _reference_testing(self, arguments, reference):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:

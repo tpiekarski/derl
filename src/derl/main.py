@@ -3,7 +3,7 @@
 import logging
 import sys
 
-from derl.checker import check_directory
+from derl.checker import is_directory
 from derl.dispatcher import request
 from derl.outputer import output
 from derl.parser import parse_args
@@ -31,7 +31,7 @@ def main(args):
     args = parse_args(args)
     setup_logging(args.loglevel)
 
-    if not check_directory(args.directory):
+    if not is_directory(args.directory):
         _logger.error("Cannot access '%s': No such directory", args.directory)
         sys.exit(-1)
 

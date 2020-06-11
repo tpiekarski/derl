@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 from derl.model.file import File
 from derl.model.url import URL
+from derl.checker import is_text_file
 
 
 _STARTING_LINE_NUMBER = 1
@@ -74,7 +75,7 @@ def process_directory(directory, files):
     try:
         path = Path(directory)
         for current in path.iterdir():
-            if current.is_file():
+            if current.is_file() and is_text_file(str(current)):
                 _logger.debug("Appending file '%s'", current.name)
                 files.append(File(current))
             elif current.is_dir():
