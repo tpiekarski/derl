@@ -4,7 +4,7 @@ from unittest import TestCase
 from unittest.mock import patch
 from io import StringIO
 
-from derl.main import is_directory, main
+from derl.main import main
 
 _TEST_DIRECTORY = "tests/test-directory"
 

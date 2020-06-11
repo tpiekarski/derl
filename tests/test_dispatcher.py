@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from unittest import TestCase
-from unittest.mock import Mock
 
 from derl.dispatcher import request
 from derl.model.file import File
