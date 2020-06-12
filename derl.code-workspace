@@ -13,7 +13,8 @@
             "datefmt",
             "loglevel",
             "outputer",
-            "pathlib"
+            "pathlib",
+            "pytest"
         ],
         "python.pythonPath": "/usr/bin/python3"
     }

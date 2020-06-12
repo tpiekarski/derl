@@ -102,6 +102,13 @@ test-directory/
 2 directories, 7 files
 ```
 
+## Recreating reference output
+
+```sh
+derl tests/test-directory/ > tests/references/output-without-dispatch.out
+derl tests/test-directory/ -d > tests/references/output-with-dispatch.out
+```
+
 ## References
 
 - [How To Use String Formatters in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-string-formatters-in-python-3)
@@ -112,6 +119,7 @@ test-directory/
 - [Requests for humans, Quickstart](https://requests.readthedocs.io/en/master/user/quickstart/)
 - [Testing Output to stdout](https://www.geeksforgeeks.org/python-testing-output-to-stdout/)
 - [The Python Tutorial](https://docs.python.org/3.7/tutorial/index.html)
+- Medium, [Testing sys.exit() with pytest](https://medium.com/python-pandemonium/testing-sys-exit-with-pytest-10c6e5f7726f)
 - Programiz, [Python Tuple](https://www.programiz.com/python-programming/tuple)
 - Pylint Tutorial, [A Beginner’s Guide to Code Standards in Python](https://docs.pylint.org/en/1.6.0/tutorial.html)
 - Python HOW TOS, [Sorting HOW TO](https://docs.python.org/3/howto/sorting.html)

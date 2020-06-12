@@ -19,7 +19,12 @@ class MainTest(TestCase):
     def _reference_testing(self, arguments, reference):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:
             with open(reference, "r") as opened_reference:
-                main(arguments)
+                with raises(SystemExit) as wrapped_exit:
+                    main(arguments)
+
+                    self.assertEqual(wrapped_exit.type, SystemExit)
+                    self.assertEqual(wrapped_exit.value.code, 0)
+
                 self.assertEqual(fake_stdout.getvalue(), opened_reference.read())
 
     def test_main_without_dispatch(self):

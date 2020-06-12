@@ -49,6 +49,8 @@ def main(args):
     else:
         output(filtered_files)
 
+    sys.exit(0)
+
 
 def run():
     main(sys.argv[1:])
