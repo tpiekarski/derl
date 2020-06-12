@@ -9,7 +9,7 @@ import requests
 
 _logger = logging.getLogger(__name__)
 
-_DEFAULT_TIMEOUT = 5
+_DEFAULT_TIMEOUT = 10
 
 
 def request(files, timeout=_DEFAULT_TIMEOUT):

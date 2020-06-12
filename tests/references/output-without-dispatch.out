@@ -1,11 +1,7 @@
-tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:
- - #1: http://www.python.org/
- - #4: http://docs.python.org/something
-tests/test-directory/dir-1/test-3-dir-1.txt:
- - #3: http://www.google.de/test
-tests/test-directory/test-1-dir-0.txt:
- - #2: https://www.github.com/
- - #5: https://www.bing.com
-tests/test-directory/test-2-dir-0.txt:
- - #1: https://www.github.com
- - #3: http://www.dlqx.de/test
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:1, http://www.python.org/
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:4, http://docs.python.org/something
+tests/test-directory/dir-1/test-3-dir-1.txt:3, http://www.google.de/test
+tests/test-directory/test-1-dir-0.txt:2, https://www.github.com/
+tests/test-directory/test-1-dir-0.txt:5, https://www.bing.com
+tests/test-directory/test-2-dir-0.txt:1, https://www.github.com
+tests/test-directory/test-2-dir-0.txt:3, http://www.dlqx.de/test

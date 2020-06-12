@@ -15,11 +15,11 @@ class URL:
 
     def __str__(self):
         if self.status_code is None:
-            format_string = "#{}: {}".format(self.line_number, self.url)
+            output = "{}, {}".format(self.line_number, self.url)
         else:
-            format_string = "#{}: {}, {}".format(self.line_number, self.status_code, self.url)
+            output = "{}, {}, {}".format(self.line_number, self.status_code, self.url)
 
-        return format_string
+        return output
 
     def __repr__(self):
         return self.__str__()

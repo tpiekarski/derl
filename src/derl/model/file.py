@@ -16,12 +16,12 @@ class File:
         self.urls = []
 
     def __str__(self):
-        output_urls = ""
+        output = ""
 
         for current_url in self.urls:
-            output_urls += "\n - %s" % (current_url)
+            output += "{}:{}\n".format(self.filename, current_url)
 
-        return "{}:{}".format(self.filename, output_urls)
+        return output
 
     def __repr__(self):
         return self.__str__()

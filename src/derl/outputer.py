@@ -15,4 +15,4 @@ def output(files):
         return
 
     for file in files:
-        print(file)
+        print(file, end="")
