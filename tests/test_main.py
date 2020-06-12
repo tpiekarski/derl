@@ -8,6 +8,7 @@ from unittest import TestCase
 from unittest.mock import patch
 from io import StringIO
 
+from pytest import raises
 from derl.main import main
 
 _TEST_DIRECTORY = "tests/test-directory"
@@ -26,3 +27,10 @@ class MainTest(TestCase):
 
     def test_main_with_dispatch(self):
         self._reference_testing(["--dispatch", _TEST_DIRECTORY], "tests/references/output-with-dispatch.out")
+
+    def test_main_with_not_existing_directory(self):
+        with raises(SystemExit) as wrapped_exit:
+            main(["tests/not-existing"])
+
+        self.assertEqual(wrapped_exit.type, SystemExit)
+        self.assertEqual(wrapped_exit.value.code, -1)
