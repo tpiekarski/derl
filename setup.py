@@ -1,4 +1,9 @@
-# -*- coding: utf-8 -*-
+#
+# derl: CLI Utility for searching for dead URLs <https://github.com/tpiekarski/derl>
+# ---
+# Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
+#
+
 """
     Setup file for derl.
     Use setup.cfg to configure your project.
