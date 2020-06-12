@@ -91,12 +91,15 @@ files: [
 test-directory/
 ├── dir-1
 │   ├── dir-2
-│   │   └── test-4-dir-2.txt
-│   └── test-3-dir-1.txt
+│   │   ├── test-4-dir-2.txt
+│   │   └── test-6-dir-2.txt
+│   ├── test-3-dir-1.txt
+│   ├── test-5-dir-1
+│   └── test-7-dir-1.txt
 ├── test-1-dir-0.txt
 └── test-2-dir-0.txt
 
-2 directories, 4 files
+2 directories, 7 files
 ```
 
 ## References
