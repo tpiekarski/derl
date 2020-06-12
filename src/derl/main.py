@@ -5,6 +5,7 @@ import sys
 
 from derl.checker import is_directory
 from derl.dispatcher import request
+from derl.filterer import filter_not_matching
 from derl.outputer import output
 from derl.parser import parse_args
 from derl.processor import process_directory
@@ -36,12 +37,13 @@ def main(args):
         sys.exit(-1)
 
     processed_directories = process_directory(args.directory, [])
-    matched_files = search_urls(processed_directories)
+    searched_files = search_urls(processed_directories)
+    filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
-        output(request(matched_files))
+        output(request(filtered_files))
     else:
-        output(matched_files)
+        output(filtered_files)
 
 
 def run():

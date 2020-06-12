@@ -24,3 +24,6 @@ class File:
 
     def append(self, url, line_number):
         self.urls.append(URL(url, line_number))
+
+    def contains_urls(self):
+        return len(self.urls) > 0
