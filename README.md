@@ -14,19 +14,21 @@ derl --dispatch tests/test-directory/
 ## Usage
 
 ```txt
-derl [-h] [-d] [--version] [-v] [-vv] directory
+derl [-h] [-d] [-t TIMEOUT] [--version] [-v] [-vv] directory
 
 Dead URL searching utility
 
 positional arguments:
-  directory            directory for looking for dead URLs
+  directory             directory for looking for dead URLs
 
 optional arguments:
-  -h, --help           show this help message and exit
-  -d, --dispatch       dispatching HTTP requests for every found URL
-  --version            show program's version number and exit
-  -v, --verbose        set loglevel to INFO
-  -vv, --very-verbose  set loglevel to DEBUG
+  -h, --help            show this help message and exit
+  -d, --dispatch        dispatching HTTP requests for every found URL
+  -t TIMEOUT, --timeout TIMEOUT
+                        set timeout for requests in seconds (default is 10)
+  --version             show program's version number and exit
+  -v, --verbose         set loglevel to INFO
+  -vv, --very-verbose   set loglevel to DEBUG
 ```
 
 ## Linting

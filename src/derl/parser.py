@@ -8,6 +8,7 @@ from argparse import ArgumentParser
 from logging import DEBUG, INFO
 
 from derl import __version__
+from derl.dispatcher import _DEFAULT_TIMEOUT
 
 
 def parse_args(args):
@@ -24,6 +25,15 @@ def parse_args(args):
         action="store_true",
         dest="dispatch",
         help="dispatching HTTP requests for every found URL"
+    )
+    parser.add_argument(
+        "-t",
+        "--timeout",
+        action="store",
+        default=_DEFAULT_TIMEOUT,
+        dest="timeout",
+        help="set timeout for requests in seconds (default is 10)",
+        type=int,
     )
     parser.add_argument(
         "--version",

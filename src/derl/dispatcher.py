@@ -17,6 +17,8 @@ def request(files, timeout=_DEFAULT_TIMEOUT):
         _logger.debug("No matches for HTTP requests")
         return []
 
+    _logger.debug("Timeout for all HTTP requests is %i seconds", timeout)
+
     for current_file in files:
         for current_url in current_file.urls:
             try:

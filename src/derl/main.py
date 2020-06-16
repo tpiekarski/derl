@@ -9,7 +9,7 @@ import sys
 
 from logging import basicConfig, getLogger
 
-from derl.checker import is_directory
+from derl.checker import is_directory, is_timeout
 from derl.dispatcher import request
 from derl.filterer import filter_not_matching
 from derl.outputer import output
@@ -22,6 +22,9 @@ __copyright__ = "Thomas Piekarski"
 __license__ = "mit"
 
 _logger = getLogger(__name__)
+
+_INVALID_DIRECTORY = -1
+_INVALID_TIMEOUT = -2
 
 
 def setup_logging(loglevel):
@@ -40,14 +43,18 @@ def main(args):
 
     if not is_directory(args.directory):
         _logger.error("Cannot access '%s': No such directory", args.directory)
-        sys.exit(-1)
+        sys.exit(_INVALID_DIRECTORY)
+
+    if not is_timeout(args.timeout):
+        _logger.error("Invalid timeout, timeout must be greater than 0")
+        sys.exit(_INVALID_TIMEOUT)
 
     processed_directories = process_directory(args.directory, [])
     searched_files = search_urls(processed_directories)
     filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
-        output(request(filtered_files))
+        output(request(filtered_files, args.timeout))
     else:
         output(filtered_files)
 

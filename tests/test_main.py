@@ -10,8 +10,8 @@ from unittest.mock import patch
 
 from pytest import raises
 
-from conftest import _TEST_DIRECTORY
-from derl.main import main
+from conftest import _TEST_DIRECTORY, _TEST_REQUESTS_TIMEOUT
+from derl.main import main, _INVALID_DIRECTORY, _INVALID_TIMEOUT
 
 
 class MainTest(TestCase):
@@ -22,20 +22,27 @@ class MainTest(TestCase):
                 with raises(SystemExit) as wrapped_exit:
                     main(arguments)
 
-                    self.assertEqual(wrapped_exit.type, SystemExit)
-                    self.assertEqual(wrapped_exit.value.code, 0)
-
+                self.assertEqual(wrapped_exit.type, SystemExit)
+                self.assertEqual(wrapped_exit.value.code, 0)
                 self.assertEqual(fake_stdout.getvalue(), opened_reference.read())
 
     def test_main_without_dispatch(self):
         self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-dispatch.out")
 
     def test_main_with_dispatch(self):
-        self._reference_testing(["--dispatch", _TEST_DIRECTORY], "tests/references/output-with-dispatch.out")
+        self._reference_testing(["--dispatch", "--timeout", str(_TEST_REQUESTS_TIMEOUT), _TEST_DIRECTORY],
+                                "tests/references/output-with-dispatch.out")
 
     def test_main_with_not_existing_directory(self):
         with raises(SystemExit) as wrapped_exit:
             main(["tests/not-existing"])
 
         self.assertEqual(wrapped_exit.type, SystemExit)
-        self.assertEqual(wrapped_exit.value.code, -1)
+        self.assertEqual(wrapped_exit.value.code, _INVALID_DIRECTORY)
+
+    def test_main_with_invalid_timeout(self):
+        with raises(SystemExit) as wrapped_exit:
+            main(["--dispatch", "--timeout", "-5", _TEST_DIRECTORY])
+
+        self.assertEqual(wrapped_exit.type, SystemExit)
+        self.assertEqual(wrapped_exit.value.code, _INVALID_TIMEOUT)

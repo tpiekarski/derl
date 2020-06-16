@@ -23,3 +23,7 @@ def is_text_file(file):
     mimetype = from_file(str(file), mime=True)
 
     return mimetype[:4] == "text"
+
+
+def is_timeout(value):
+    return value > 0

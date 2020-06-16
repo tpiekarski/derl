@@ -15,3 +15,4 @@
 # import pytest
 
 _TEST_DIRECTORY = "tests/test-directory"
+_TEST_REQUESTS_TIMEOUT = 60
