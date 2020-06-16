@@ -4,11 +4,14 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-from logging import getLogger
-from requests import get, ConnectionError as RequestConnectionError, Session, Timeout, TooManyRedirects
+
+import logging
+import requests
+
+from requests import ConnectionError as RequestConnectionError, Session, Timeout, TooManyRedirects
 from requests.adapters import HTTPAdapter
 
-_logger = getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 _DEFAULT_RETRY = 3
 _DEFAULT_TIMEOUT = 10
@@ -29,7 +32,7 @@ def request(files, retry=_DEFAULT_RETRY, timeout=_DEFAULT_TIMEOUT):
             try:
                 session.mount(current_url.url, http_adaptor)
                 _logger.debug("Requesting status code for %s", current_url.url)
-                current_url.status_code = get(current_url.url, timeout=timeout).status_code
+                current_url.status_code = requests.get(current_url.url, timeout=timeout).status_code
             except Timeout:
                 _logger.debug("Waited for %i seconds, giving up getting %s", timeout, current_url.url)
                 current_url.status_code = 0

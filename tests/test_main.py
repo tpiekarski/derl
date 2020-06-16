@@ -12,7 +12,7 @@ from pytest import raises
 
 from conftest import _TEST_DIRECTORY, _TEST_REQUEST_RETRIES, _TEST_REQUESTS_TIMEOUT
 from derl.checker import _INVALID_DIRECTORY, _INVALID_RETRY, _INVALID_TIMEOUT
-from derl.main import main
+from derl.main import main, run
 
 
 class MainTest(TestCase):
@@ -56,3 +56,12 @@ class MainTest(TestCase):
 
         self.assertEqual(wrapped_exit.type, SystemExit)
         self.assertEqual(wrapped_exit.value.code, _INVALID_RETRY)
+
+    def test_run(self):
+        with patch("sys.stdout", new=StringIO()) as fake_stdout:
+            with raises(SystemExit) as wrapped_exit:
+                run()
+
+            self.assertEqual(wrapped_exit.type, SystemExit)
+            self.assertEqual(wrapped_exit.value.code, 2)
+            self.assertEqual(fake_stdout.getvalue(), "")
