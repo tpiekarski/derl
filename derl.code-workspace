@@ -6,16 +6,28 @@
     ],
     "settings": {
         "cSpell.words": [
+            "DISTRIB",
+            "Findwork",
             "Programiz",
             "Pylint",
             "Quickstart",
+            "Regexes",
+            "Twilio",
+            "Youtube",
             "argparse",
+            "cheatsheet",
+            "conda",
+            "coveragerc",
             "datefmt",
             "loglevel",
+            "miniconda",
             "outputer",
             "pathlib",
+            "pyscaffold",
             "pytest",
-            "rcompile"
+            "rcompile",
+            "repr",
+            "virtualenv"
         ],
         "python.pythonPath": "/usr/bin/python3"
     }
