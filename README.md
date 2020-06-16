@@ -5,6 +5,7 @@
 ## Test and Install
 
 ```sh
+pip install -r requirements.txt
 python setup.py test
 python setup.py develop --user
 
@@ -53,7 +54,7 @@ output in a formatted way.
 - Passing a command line argument with the directory to process
 - Iterate over all subdirectories and gather a list of all files
   (Including relative path and skipping any binary files)
-- Search for URLs (http and https) inside the file list and store all found URLs
+- Search for valid URLs (http and https) inside the file list and store all found URLs
 - Send an HTTP GET request to all URLs (In later version this definitely should happen parallel)
 - Record the returning HTTP Status Code
 - Output a list of files and urls where a 404 was returned (something like file:line-number:url)

@@ -18,7 +18,7 @@ class ProcessorTest(TestCase):
         self.assertEqual(process_line(None, [0, ""], urls), [])
 
     def test_process_directory(self):
-        self.assertEqual(len(process_directory(_TEST_DIRECTORY, [])), 6)
+        self.assertEqual(len(process_directory(_TEST_DIRECTORY, [])), 7)
         self.assertEqual(len(process_directory("not-existing-directory", [])), 0)
 
     def test_unsupported_file_encoding(self):
