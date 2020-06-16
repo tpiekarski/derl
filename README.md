@@ -36,7 +36,7 @@ optional arguments:
 ## Linting
 
 ```sh
-pylint src/derl/* && pylint tests/*.py
+pylint src/derl/*.py && pylint tests/*.py
 ```
 
 ## Concept
@@ -130,7 +130,7 @@ derl tests/test-directory/ -d > tests/references/output-with-dispatch.out
 - Python Reference, [Basic customization to data models](https://docs.python.org/3/reference/datamodel.html#customization)
 - Python Reference, [Mock Object Library](https://docs.python.org/3/library/unittest.mock.html)
 - Python Reference, [pathlib — Object-oriented filesystem paths](https://docs.python.org/3/library/pathlib.html)
-- Python Reference, [re - Regular expression operations¶](https://docs.python.org/3/library/re.html)
+- Python Reference, [re - Regular expression operations](https://docs.python.org/3/library/re.html)
 - Python Tips, [Enumerate](https://book.pythontips.com/en/latest/enumerate.html)
 - Python Tutorial, [Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html)
 - Python, [The Python Tutorial](https://docs.python.org/3.7/tutorial/index.html)
