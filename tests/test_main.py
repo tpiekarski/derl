@@ -10,8 +10,9 @@ from unittest.mock import patch
 
 from pytest import raises
 
-from conftest import _TEST_DIRECTORY, _TEST_REQUESTS_TIMEOUT
-from derl.main import main, _INVALID_DIRECTORY, _INVALID_RETRY, _INVALID_TIMEOUT
+from conftest import _TEST_DIRECTORY, _TEST_REQUEST_RETRIES, _TEST_REQUESTS_TIMEOUT
+from derl.checker import _INVALID_DIRECTORY, _INVALID_RETRY, _INVALID_TIMEOUT
+from derl.main import main
 
 
 class MainTest(TestCase):
@@ -30,7 +31,9 @@ class MainTest(TestCase):
         self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-dispatch.out")
 
     def test_main_with_dispatch(self):
-        self._reference_testing(["--dispatch", "--timeout", str(_TEST_REQUESTS_TIMEOUT), _TEST_DIRECTORY],
+        self._reference_testing(["--dispatch", _TEST_DIRECTORY,
+                                 "--retry", str(_TEST_REQUEST_RETRIES),
+                                 "--timeout", str(_TEST_REQUESTS_TIMEOUT)],
                                 "tests/references/output-with-dispatch.out")
 
     def test_main_with_not_existing_directory(self):

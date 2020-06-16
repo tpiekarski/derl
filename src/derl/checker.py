@@ -4,10 +4,15 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
+import sys
+
 from logging import getLogger
 from os import path
 from magic import from_file
 
+_INVALID_DIRECTORY = -1
+_INVALID_TIMEOUT = -2
+_INVALID_RETRY = -3
 
 _logger = getLogger(__name__)
 
@@ -31,3 +36,17 @@ def is_text_file(file):
 
 def is_timeout(value):
     return value > 0
+
+
+def check_arguments(args):
+    if not is_timeout(args.timeout):
+        _logger.error("Invalid timeout, timeout must be greater than 0")
+        sys.exit(_INVALID_TIMEOUT)
+
+    if not is_retry(args.retry):
+        _logger.error("Invalid retry, retry must be greater than 0 and less or equal than 10")
+        sys.exit(_INVALID_RETRY)
+
+    if not is_directory(args.directory):
+        _logger.error("Cannot access '%s': No such directory", args.directory)
+        sys.exit(_INVALID_DIRECTORY)
