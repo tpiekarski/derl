@@ -16,4 +16,6 @@ def filter_not_matching(files):
         if current_file.contains_urls():
             filtered_files.append(current_file)
 
+    del files
+
     return filtered_files

@@ -31,7 +31,7 @@ def is_text_file(file):
     _logger.debug("Checking file %s", file)
     mimetype = from_file(str(file), mime=True)
 
-    return mimetype[:4] == "text"
+    return file.is_file() and mimetype[:4] == "text"
 
 
 def is_timeout(value):

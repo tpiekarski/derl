@@ -79,12 +79,12 @@ def process_directory(directory, files):
     try:
         path = Path(directory)
         for current in path.iterdir():
-            if current.is_file() and is_text_file(str(current)):
-                _logger.debug("Appending file '%s'", current.name)
-                files.append(File(current))
-            elif current.is_dir():
+            if current.is_dir():
                 _logger.debug("'%s' is a directory, descending...", current.name)
                 files = process_directory(current, files)
+            elif is_text_file(current):
+                _logger.debug("Appending file '%s'", current.name)
+                files.append(File(current))
             else:
                 _logger.debug("Skipping not regular file or directory")
                 continue
