@@ -11,7 +11,7 @@ from unittest.mock import patch
 from pytest import raises
 
 from conftest import _TEST_DIRECTORY, _TEST_REQUESTS_TIMEOUT
-from derl.main import main, _INVALID_DIRECTORY, _INVALID_TIMEOUT
+from derl.main import main, _INVALID_DIRECTORY, _INVALID_RETRY, _INVALID_TIMEOUT
 
 
 class MainTest(TestCase):
@@ -46,3 +46,10 @@ class MainTest(TestCase):
 
         self.assertEqual(wrapped_exit.type, SystemExit)
         self.assertEqual(wrapped_exit.value.code, _INVALID_TIMEOUT)
+
+    def test_main_with_invalid_retry(self):
+        with raises(SystemExit) as wrapped_exit:
+            main(["--dispatch", "--retry", "1000", _TEST_DIRECTORY])
+
+        self.assertEqual(wrapped_exit.type, SystemExit)
+        self.assertEqual(wrapped_exit.value.code, _INVALID_RETRY)

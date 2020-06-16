@@ -9,7 +9,7 @@ import sys
 
 from logging import basicConfig, getLogger
 
-from derl.checker import is_directory, is_timeout
+from derl.checker import is_directory, is_retry, is_timeout
 from derl.dispatcher import request
 from derl.filterer import filter_not_matching
 from derl.outputer import output
@@ -25,6 +25,7 @@ _logger = getLogger(__name__)
 
 _INVALID_DIRECTORY = -1
 _INVALID_TIMEOUT = -2
+_INVALID_RETRY = -3
 
 
 def setup_logging(loglevel):
@@ -41,13 +42,17 @@ def main(args):
     args = parse_args(args)
     setup_logging(args.loglevel)
 
-    if not is_directory(args.directory):
-        _logger.error("Cannot access '%s': No such directory", args.directory)
-        sys.exit(_INVALID_DIRECTORY)
-
     if not is_timeout(args.timeout):
         _logger.error("Invalid timeout, timeout must be greater than 0")
         sys.exit(_INVALID_TIMEOUT)
+
+    if not is_retry(args.retry):
+        _logger.error("Invalid retry, retry must be greater than 0 and less or equal than 10")
+        sys.exit(_INVALID_RETRY)
+
+    if not is_directory(args.directory):
+        _logger.error("Cannot access '%s': No such directory", args.directory)
+        sys.exit(_INVALID_DIRECTORY)
 
     processed_directories = process_directory(args.directory, [])
     searched_files = search_urls(processed_directories)

@@ -6,7 +6,7 @@
 
 from unittest import TestCase
 
-from derl.dispatcher import request, _DEFAULT_TIMEOUT
+from derl.dispatcher import request
 from derl.model.file import File
 
 

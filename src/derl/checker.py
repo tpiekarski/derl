@@ -18,6 +18,10 @@ def is_directory(value):
     return path.isdir(value)
 
 
+def is_retry(value):
+    return 0 < value <= 10
+
+
 def is_text_file(file):
     _logger.debug("Checking file %s", file)
     mimetype = from_file(str(file), mime=True)
