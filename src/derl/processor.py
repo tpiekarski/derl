@@ -4,19 +4,19 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-import logging
-import re
-
+from logging import getLogger
 from pathlib import Path
+from re import compile as rcompile, IGNORECASE
+
+from derl.checker import is_text_file
 from derl.model.file import File
 from derl.model.url import URL
-from derl.checker import is_text_file
 
 
 _STARTING_LINE_NUMBER = 1
 
-_logger = logging.getLogger(__name__)
-_pattern = re.compile(r"^(http|https):\/\/.*$", re.IGNORECASE)
+_logger = getLogger(__name__)
+_pattern = rcompile(r"^(http|https):\/\/.*$", IGNORECASE)
 
 
 def process_file(file):

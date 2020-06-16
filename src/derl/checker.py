@@ -4,12 +4,12 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-import logging
-
+from logging import getLogger
 from os import path
 from magic import from_file
 
-_logger = logging.getLogger(__name__)
+
+_logger = getLogger(__name__)
 
 
 def is_directory(value):

@@ -4,14 +4,14 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-import argparse
-import logging
+from argparse import ArgumentParser
+from logging import DEBUG, INFO
 
 from derl import __version__
 
 
 def parse_args(args):
-    parser = argparse.ArgumentParser(description="Dead URL searching utility")
+    parser = ArgumentParser(description="Dead URL searching utility")
     parser.add_argument(
         action="store",  # default behavior
         dest="directory",
@@ -34,7 +34,7 @@ def parse_args(args):
         "-v",
         "--verbose",
         action="store_const",
-        const=logging.INFO,
+        const=INFO,
         dest="loglevel",
         help="set loglevel to INFO",
     )
@@ -42,7 +42,7 @@ def parse_args(args):
         "-vv",
         "--very-verbose",
         action="store_const",
-        const=logging.DEBUG,
+        const=DEBUG,
         dest="loglevel",
         help="set loglevel to DEBUG"
     )

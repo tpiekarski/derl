@@ -13,3 +13,5 @@
 """
 
 # import pytest
+
+_TEST_DIRECTORY = "tests/test-directory"

@@ -4,9 +4,9 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-import logging
+from logging import getLogger
 
-_logger = logging.getLogger(__name__)
+_logger = getLogger(__name__)
 
 
 def filter_not_matching(files):

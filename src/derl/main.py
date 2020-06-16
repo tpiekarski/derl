@@ -4,8 +4,10 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-import logging
+
 import sys
+
+from logging import basicConfig, getLogger
 
 from derl.checker import is_directory
 from derl.dispatcher import request
@@ -19,12 +21,12 @@ __author__ = "Thomas Piekarski"
 __copyright__ = "Thomas Piekarski"
 __license__ = "mit"
 
-_logger = logging.getLogger(__name__)
+_logger = getLogger(__name__)
 
 
 def setup_logging(loglevel):
     logformat = "[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
-    logging.basicConfig(
+    basicConfig(
         datefmt="%Y-%m-%d %H:%M:%S",
         format=logformat,
         level=loglevel,

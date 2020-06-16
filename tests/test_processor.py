@@ -6,9 +6,8 @@
 
 from unittest import TestCase
 
+from conftest import _TEST_DIRECTORY
 from derl.processor import process_directory, process_line
-
-_TEST_DIRECTORY = "tests/test-directory"
 
 
 class ProcessorTest(TestCase):

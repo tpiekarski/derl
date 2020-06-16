@@ -4,11 +4,11 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-import logging
+from logging import getLogger
 
 from derl.processor import process_file
 
-_logger = logging.getLogger(__name__)
+_logger = getLogger(__name__)
 
 _DEFAULT_ENCODING = "utf-8"
 

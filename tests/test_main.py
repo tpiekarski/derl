@@ -4,14 +4,14 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
+from io import StringIO
 from unittest import TestCase
 from unittest.mock import patch
-from io import StringIO
 
 from pytest import raises
-from derl.main import main
 
-_TEST_DIRECTORY = "tests/test-directory"
+from conftest import _TEST_DIRECTORY
+from derl.main import main
 
 
 class MainTest(TestCase):
