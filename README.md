@@ -203,6 +203,7 @@ derl tests/test-directory/ --context --dispatch > tests/references/output-with-c
 - Stack Overflow, [Can I set max_retries for requests.request?](https://stackoverflow.com/questions/15431044/can-i-set-max-retries-for-requests-request)
 - Stack Overflow, [Control formatting of the argparse help argument list?](https://stackoverflow.com/questions/5462873/control-formatting-of-the-argparse-help-argument-list)
 - Stack Overflow, [Python __str__ and lists](https://stackoverflow.com/questions/727761/python-str-and-lists)
+- Stack Overflow, [Remove all the lines before the first line that contains a match?](https://unix.stackexchange.com/questions/257082/remove-all-the-lines-before-the-first-line-that-contains-a-match)
 - Stack Overflow, [Why does "return list.sort()" return None, not the list?](https://stackoverflow.com/questions/7301110/why-does-return-list-sort-return-none-not-the-list)
 - Twilio, [HTTP Requests in Python 3](https://www.twilio.com/blog/2016/12/http-requests-in-python-3.html)
 - Youtube, [Learn Python in 60 Minutes from Java](https://www.youtube.com/watch?v=xLovcfIugy8)
