@@ -6,6 +6,7 @@
 
 SHELL:=/bin/bash
 TEST_DIRECTORY=tests/test-directory/
+LINT_JOBS=0 # auto-detect number of processors
 
 .PHONY: develop run test lint update_references
 
@@ -21,7 +22,13 @@ develop:
 
 lint:
 	$(info Linting source and test files)
-	pylint src/derl/*.py && pylint tests/*.py
+	find src/ tests/ -name "*.py" | xargs pylint --jobs=$(LINT_JOBS) --output-format=colorized --verbose
+
+report:
+	$(info Genereting report with pylint and  removing lint results with sed)
+	@find src/ tests/ -name "*.py" | \
+		xargs pylint --jobs=$(LINT_JOBS) --reports=y --persistent=n --score=n --msg-template="" | \
+		sed -e/Report/\{ -e:1 -en\;b1 -e\} -ed | less
 
 requirements:
 	$(info Installing requirements)
