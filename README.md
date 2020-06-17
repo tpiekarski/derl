@@ -1,18 +1,61 @@
 # derl
 
-*A CLI utility for searching for **de**ad U**RL**s inside a project directory.*
+[Overview](#overview) / [Features](#features) / [Running](#running) / [Usage](#usage) /
+[Development](#development) / [Structures](#structures) / [References](#references)
 
-## Test and Install
+*A CLI utility for searching for **de**ad U**RL**s inside the files of a directory.*
+
+## [Overview](#overview)
+
+The CLI utility takes a directory, finds all files recursively, looks for valid URLs and sends
+an HTTP GET request. All returning HTTP Status Codes are gathered in a list which is printed at
+the end and can be sorted, filtered and further processed with tools like sed, awk and grep.
+
+## [Features](#features)
+
+- Passing a command line argument with the directory to process
+- Iterating over all subdirectories and gathering a list of all files
+  (At the moment only UTF-8, including relative paths and skipping any binary files)
+- Search for valid [URLs](https://developer.mozilla.org/en-US/docs/Glossary/URL) (http and https)
+  inside the file list and store all found URLs
+- Send an optional [HTTP GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request
+  to all URLs with custom timeout and retry (soon multi-threaded)
+- Record all returning [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+- Output a list of files, urls and line numbers (optional with context up to 3 lines)
+- Common verbosity by default arguments (```-v|-vv```) with a lot of output for information and debugging
+- Utilities name sounds little bit like one guy hunting for other dead things ;)
+
+## [Running](#running)
 
 ```sh
-pip install -r requirements.txt
-python setup.py test
-python setup.py develop --user
-
-derl --dispatch tests/test-directory/
+derl --dispatch directory
 ```
 
-## Usage
+### [Output](#output)
+
+```sh
+$ derl --dispatch tests/test-directory/
+
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:1, 200, http://www.python.org/
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:4, 404, http://docs.python.org/something
+
+# [...]
+
+$ derl --context --dispatch tests/test-directory/
+
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:1, 200, http://www.python.org/
+  Sed condimentum efficitur orci, sed mollis tellus mollis a. Nullam http://www.python.org/
+  tempus magna ac felis iaculis rhoncus. Ut in sodales lectus. Integer vestibulum malesuada
+
+tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:4, 404, http://docs.python.org/something
+  ullamcorper. Integer quis ultricies odio. Fusce tincidunt a ligula id blandit. Integer
+  dignissim blandit turpis ac maximus. Donec http://docs.python.org/something eget justo tempus,
+  mauris.
+
+# [...]
+```
+
+## [Usage](#usage)
 
 ```txt
 derl [-h] [-c] [-d] [-r RETRY] [-t TIMEOUT] [--version] [-v] [-vv] directory
@@ -20,78 +63,91 @@ derl [-h] [-c] [-d] [-r RETRY] [-t TIMEOUT] [--version] [-v] [-vv] directory
 Dead URL searching utility
 
 positional arguments:
-  directory             directory for looking for dead URLs
+  directory                      directory for looking for dead URLs
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -c, --context         showing up to 3 lines of context
-  -d, --dispatch        dispatching HTTP requests for every found URL
-  -r RETRY, --retry RETRY
-                        set how often to retry a request (default is 3)
-  -t TIMEOUT, --timeout TIMEOUT
-                        set timeout for requests in seconds (default is 10)
-  --version             show program's version number and exit
-  -v, --verbose         set loglevel to INFO
-  -vv, --very-verbose   set loglevel to DEBUG
+  -h, --help                     show this help message and exit
+  -c, --context                  showing up to 3 lines of context
+  -d, --dispatch                 dispatching HTTP requests for every found URL
+  -r RETRY, --retry RETRY        set how often to retry a request (default is 3)
+  -t TIMEOUT, --timeout TIMEOUT  set timeout for requests in seconds (default is 10)
+  --version                      show program's version number and exit
+  -v, --verbose                  set loglevel to INFO
+  -vv, --very-verbose            set loglevel to DEBUG
 ```
 
-## Linting
+## [Development](#development)
+
+### [Requirements, Tests and Development](#req-tests-dev)
 
 ```sh
-pylint src/derl/*.py && pylint tests/*.py
+# Makefile targets
+make requirements test develop
+
+# Or without Makefile
+pip install -r requirements.txt
+python setup.py test
+python setup.py develop --user
 ```
 
-## Concept
+### [Linting](#linting)
 
-### Description
+```sh
+# Linting project
+make lint
 
-The CLI utility should take a directory as one argument, find all files recursively,
-find all URLs inside those files and send an HTTP GET request. All returning codes
-should be collected and then filtered by 404 Not found. The final list should be
-output in a formatted way.
+# Generating report
+make report
+```
 
-### Features
+## [Structures](#structures)
 
-- Passing a command line argument with the directory to process
-- Iterate over all subdirectories and gather a list of all files
-  (Including relative path and skipping any binary files)
-- Search for valid URLs (http and https) inside the file list and store all found URLs
-- Send an HTTP GET request to all URLs (In later version this definitely should happen parallel)
-- Record the returning HTTP Status Code
-- Output a list of files and urls where a 404 was returned (something like file:line-number:url)
-
-### Data structure
+### [Data structure](#data-structure)
 
 ```txt
 files: [
   {
     filename,
-    relative path,
     urls: [
       (0): {
         url,
-        response,
+        status_code,
         line_number
+        context: [
+          "line above matched line"
+          "line with found URL",
+          "line below matched line"
+        ]
       },
       (1): {
         url,
-        response,
+        status_code,
         line_number
+        context: [
+          "line above matched line"
+          "line with found URL",
+          "line below matched line"
+        ]
       },
 
       ...
 
       (n): {
         url,
-        response,
+        status_code,
         line_number
+        context: [
+          "line above matched line"
+          "line with found URL",
+          "line below matched line"
+        ]
       }
     ]
   }
 ]
 ```
 
-## Test directory structure
+### [Test directory structure](#test-directory-structure)
 
 ```txt
 test-directory/
@@ -104,18 +160,22 @@ test-directory/
 │   └── test-7-dir-1.txt
 ├── test-1-dir-0.txt
 └── test-2-dir-0.txt
-
-2 directories, 7 files
 ```
 
-## Recreating reference output
+### [Recreating reference output](#recreating-reference-output)
 
 ```sh
-derl tests/test-directory/ > tests/references/output-without-dispatch.out && \
-derl tests/test-directory/ -d > tests/references/output-with-dispatch.out
+# Makefile target
+make update-references
+
+# Or without Makefile
+derl tests/test-directory/ > tests/references/output-without-context-without-dispatch.out && \
+derl tests/test-directory/ --context > tests/references/output-with-context-without-dispatch.out && \
+derl tests/test-directory/ -d > tests/references/output-without-context-with-dispatch.out && \
+derl tests/test-directory/ --context --dispatch > tests/references/output-with-context-with-dispatch.out
 ```
 
-## References
+## [References](#references)
 
 - Digital Ocean, [How To Use String Formatters in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-string-formatters-in-python-3)
 - Findwork, [Advanced usage of Python requests - timeouts, retries, hooks](https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/)
@@ -141,6 +201,7 @@ derl tests/test-directory/ -d > tests/references/output-with-dispatch.out
 - Stack Overflow [Python mock requests.post to throw exception](https://stackoverflow.com/questions/48723711/python-mock-requests-post-to-throw-exception)
 - Stack Overflow, [Accessing the index in 'for' loops?](https://stackoverflow.com/questions/522563/accessing-the-index-in-for-loops)
 - Stack Overflow, [Can I set max_retries for requests.request?](https://stackoverflow.com/questions/15431044/can-i-set-max-retries-for-requests-request)
+- Stack Overflow, [Control formatting of the argparse help argument list?](https://stackoverflow.com/questions/5462873/control-formatting-of-the-argparse-help-argument-list)
 - Stack Overflow, [Python __str__ and lists](https://stackoverflow.com/questions/727761/python-str-and-lists)
 - Stack Overflow, [Why does "return list.sort()" return None, not the list?](https://stackoverflow.com/questions/7301110/why-does-return-list-sort-return-none-not-the-list)
 - Twilio, [HTTP Requests in Python 3](https://www.twilio.com/blog/2016/12/http-requests-in-python-3.html)
