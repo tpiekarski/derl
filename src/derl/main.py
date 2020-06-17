@@ -10,6 +10,7 @@ import sys
 from logging import basicConfig, getLogger
 
 from derl.checker import check_arguments
+from derl.collector import collect_context
 from derl.dispatcher import request
 from derl.filterer import filter_not_matching
 from derl.outputer import output
@@ -44,9 +45,12 @@ def main(args):
     filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
-        output(request(filtered_files, args.timeout))
-    else:
-        output(filtered_files)
+        filtered_files = request(filtered_files, args.timeout)
+
+    if args.context:
+        filtered_files = collect_context(filtered_files)
+
+    output(filtered_files)
 
     sys.exit(0)
 

@@ -37,5 +37,7 @@ test:
 
 update-references:
 	$(info Updating reference output)
-	derl $(TEST_DIRECTORY) > tests/references/output-without-dispatch.out
-	derl $(TEST_DIRECTORY) -d > tests/references/output-with-dispatch.out
+	derl $(TEST_DIRECTORY) > tests/references/output-without-context-without-dispatch.out
+	derl $(TEST_DIRECTORY) --context > tests/references/output-with-context-without-dispatch.out 
+	derl $(TEST_DIRECTORY) -d > tests/references/output-without-context-with-dispatch.out
+	derl $(TEST_DIRECTORY) --context --dispatch > tests/references/output-with-context-with-dispatch.out 

@@ -27,14 +27,24 @@ class MainTest(TestCase):
                 self.assertEqual(wrapped_exit.value.code, 0)
                 self.assertEqual(fake_stdout.getvalue(), opened_reference.read())
 
-    def test_main_without_dispatch(self):
-        self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-dispatch.out")
+    def test_main_without_context_without_dispatch(self):
+        self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-context-without-dispatch.out")
 
-    def test_main_with_dispatch(self):
+    def test_main_with_context_without_dispatch(self):
+        self._reference_testing([_TEST_DIRECTORY, "--context"],
+                                "tests/references/output-with-context-without-dispatch.out")
+
+    def test_main_without_context_with_dispatch(self):
         self._reference_testing(["--dispatch", _TEST_DIRECTORY,
                                  "--retry", str(_TEST_REQUEST_RETRIES),
                                  "--timeout", str(_TEST_REQUESTS_TIMEOUT)],
-                                "tests/references/output-with-dispatch.out")
+                                "tests/references/output-without-context-with-dispatch.out")
+
+    def test_main_with_context_with_dispatch(self):
+        self._reference_testing(["--context", "--dispatch", _TEST_DIRECTORY,
+                                 "--retry", str(_TEST_REQUEST_RETRIES),
+                                 "--timeout", str(_TEST_REQUESTS_TIMEOUT)],
+                                "tests/references/output-with-context-with-dispatch.out")
 
     def test_main_with_not_existing_directory(self):
         with raises(SystemExit) as wrapped_exit:

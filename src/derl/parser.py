@@ -19,6 +19,12 @@ def parse_args(args):
         help="directory for looking for dead URLs",
         metavar="directory")
     parser.add_argument(
+        "-c",
+        "--context",
+        action="store_true",
+        dest="context",
+        help="showing up to 3 lines of context")
+    parser.add_argument(
         "-d",
         "--dispatch",
         action="store_true",

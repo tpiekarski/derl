@@ -15,7 +15,7 @@ derl --dispatch tests/test-directory/
 ## Usage
 
 ```txt
-derl [-h] [-d] [-r RETRY] [-t TIMEOUT] [--version] [-v] [-vv] directory
+derl [-h] [-c] [-d] [-r RETRY] [-t TIMEOUT] [--version] [-v] [-vv] directory
 
 Dead URL searching utility
 
@@ -24,6 +24,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  -c, --context         showing up to 3 lines of context
   -d, --dispatch        dispatching HTTP requests for every found URL
   -r RETRY, --retry RETRY
                         set how often to retry a request (default is 3)

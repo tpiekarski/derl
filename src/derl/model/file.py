@@ -4,7 +4,7 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-from derl.model.url import URL
+from derl.model.url import URL, _CONTEXT_OUTPUT_MAP
 
 
 class File:

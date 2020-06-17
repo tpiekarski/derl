@@ -1,0 +1,3 @@
+First line with an URL http://www.python.org
+Second line
+Third line
