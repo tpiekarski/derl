@@ -23,7 +23,7 @@ the end and can be sorted, filtered and further processed with tools like sed, a
 - Record all returning [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 - Output a list of files, urls and line numbers (optional with context up to 3 lines)
 - Common verbosity by default arguments (```-v|-vv```) with a lot of output for information and debugging
-- Utilities name sounds little bit like one guy hunting for other dead things ;)
+- Utilities name sounds little bit like one guy hunting for other dead things in the 10th season already ;)
 
 ## [Running](#running)
 
@@ -31,7 +31,7 @@ the end and can be sorted, filtered and further processed with tools like sed, a
 derl --dispatch directory
 ```
 
-### [Output](#output)
+### Output
 
 ```sh
 $ derl --dispatch tests/test-directory/
@@ -78,7 +78,7 @@ optional arguments:
 
 ## [Development](#development)
 
-### [Requirements, Tests and Development](#req-tests-dev)
+### Requirements, Tests and Development
 
 ```sh
 # Makefile targets
@@ -90,7 +90,7 @@ python setup.py test
 python setup.py develop --user
 ```
 
-### [Linting](#linting)
+### Linting
 
 ```sh
 # Linting project
@@ -102,7 +102,7 @@ make report
 
 ## [Structures](#structures)
 
-### [Data structure](#data-structure)
+### Data structure
 
 ```txt
 files: [
@@ -147,7 +147,7 @@ files: [
 ]
 ```
 
-### [Test directory structure](#test-directory-structure)
+### Test directory structure
 
 ```txt
 test-directory/
@@ -162,7 +162,7 @@ test-directory/
 └── test-2-dir-0.txt
 ```
 
-### [Recreating reference output](#recreating-reference-output)
+### Recreating reference output
 
 ```sh
 # Makefile target
