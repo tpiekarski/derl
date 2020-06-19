@@ -1,7 +1,7 @@
+os: linux
 dist: bionic
 
 language: python
-
 python:
   - "3.6"
   - "3.6-dev"
@@ -26,5 +26,5 @@ script:
   - make uninstall
   - make clean
 
-  notifications:
-    email: false
+notifications:
+  email: false
