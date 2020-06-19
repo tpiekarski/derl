@@ -1,6 +1,6 @@
 # derl
 
-[Overview](#overview) / [Features](#features) / [Running](#running) / [Usage](#usage) /
+[Overview](#overview) / [Features](#features) / [Install](#install) / [Run](#run) / [Usage](#usage) /
 [Development](#development) / [Structures](#structures) / [References](#references)
 
 *A CLI utility for searching for **de**ad U**RL**s inside the files of a directory.*
@@ -25,7 +25,30 @@ the end and can be sorted, filtered and further processed with tools like sed, a
 - Common verbosity by default arguments (```-v|-vv```) with a lot of output for information and debugging
 - Utilities name sounds little bit like one guy hunting for other dead things in the 10th season already ;)
 
-## [Running](#running)
+## [Install](#install)
+
+```sh
+# Makefile targets
+make requirements build install
+
+# Or without makefile
+pip install -r requirements.txt
+python setup.py build
+python setup.py install --user --record files.log
+```
+
+This way of installation will copy files to $HOME/.local/ and will create files.log storing
+all installed files for convenient removing. To uninstall run the following:
+
+```sh
+# Makefile target
+make uninstall
+
+# Or without makefile something like this:
+xargs rm -rvf < files.log && rm -fv files.log
+```
+
+## [Run](#run)
 
 ```sh
 derl --dispatch directory
