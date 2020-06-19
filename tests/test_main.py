@@ -10,9 +10,9 @@ from unittest.mock import patch
 
 from pytest import raises
 
-from conftest import _TEST_DIRECTORY, _TEST_REQUEST_RETRIES, _TEST_REQUESTS_TIMEOUT
 from derl.checker import _INVALID_DIRECTORY, _INVALID_RETRY, _INVALID_TIMEOUT
 from derl.main import main, run
+from conftest import _TEST_DIRECTORY, _TEST_REQUEST_RETRIES, _TEST_REQUESTS_TIMEOUT
 
 
 class MainTest(TestCase):

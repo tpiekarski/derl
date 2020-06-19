@@ -7,6 +7,15 @@
 _CONTEXT_OUTPUT_MAP = {0: "", 1: "  {}\n", 2: "  {}\n  {}\n", 3: "  {}\n  {}\n  {}\n"}
 
 
+def _normalize_context(context):
+    normalized_context = []
+
+    for current_line in context:
+        normalized_context.append(current_line.replace("\n", ""))
+
+    return normalized_context
+
+
 class URL:
     url = None
     status_code = None
@@ -35,13 +44,5 @@ class URL:
     def is_context_present(self):
         return len(self.context)
 
-    def normalize_context(self, context):
-        normalized_context = []
-
-        for current_line in context:
-            normalized_context.append(current_line.replace("\n", ""))
-
-        return normalized_context
-
     def set_context(self, context):
-        self.context = self.normalize_context(context)
+        self.context = _normalize_context(context)
