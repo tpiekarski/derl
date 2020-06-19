@@ -1,5 +1,7 @@
 # derl
 
+[![Build Status](https://travis-ci.org/tpiekarski/derl.svg?branch=master)](https://travis-ci.org/tpiekarski/derl)
+
 [Overview](#overview) / [Features](#features) / [Install](#install) / [Run](#run) / [Usage](#usage) /
 [Development](#development) / [Structures](#structures) / [References](#references)
 
