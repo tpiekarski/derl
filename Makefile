@@ -8,17 +8,29 @@ SHELL:=/bin/bash
 TEST_DIRECTORY=tests/test-directory/
 LINT_JOBS=0 # auto-detect number of processors
 
-.PHONY: develop run test lint update_references
+.PHONY: build check clean develop lint run report requirements test update_references
 
-commit: test lint
+build:
+	$(info Building scripts)
+	python setup.py build
 
 check:
 	$(info Checking package)
 	python setup.py check
 
+clean:
+	$(info Cleaning build directories)
+	python setup.py clean
+
+commit: test lint
+
 develop:
 	$(info Install package in development mode)
 	python setup.py develop --user
+
+install:
+	$(info Installing package to users .local/)
+	python setup.py install --user --record files.log
 
 lint:
 	$(info Linting source and test files)
@@ -41,6 +53,12 @@ run:
 test:
 	$(info Running functional and unit tests)
 	python setup.py test
+
+uninstall:
+	$(info Uninstalling package)
+	@test -f files.log \
+		&& (xargs rm -rvf < files.log && rm -fv files.log) \
+		|| echo "No files.log found in root directory, please run 'make install' again."
 
 update-references:
 	$(info Updating reference output)
