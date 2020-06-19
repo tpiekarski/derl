@@ -28,13 +28,17 @@ develop:
 	$(info Install package in development mode)
 	python setup.py develop --user
 
+env:
+	$(info Creating virtual environment in .venv)
+	python -m venv .venv
+
 install:
 	$(info Installing package to users .local/)
 	python setup.py install --user --record files.log
 
 lint:
 	$(info Linting source and test files)
-	find src/ tests/ -name "*.py" | xargs pylint --jobs=$(LINT_JOBS) --output-format=colorized --verbose
+	find src/ tests/ -name "*.py" | xargs pylint --rcfile=.pylintrc --jobs=$(LINT_JOBS) --output-format=colorized --verbose
 
 report:
 	$(info Genereting report with pylint and  removing lint results with sed)
