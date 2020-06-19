@@ -34,7 +34,7 @@ env:
 
 install:
 	$(info Installing package to users .local/)
-	python setup.py install --user --record files.log
+	python setup.py install --record files.log
 
 lint:
 	$(info Linting source and test files)
