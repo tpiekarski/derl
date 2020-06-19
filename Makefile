@@ -8,7 +8,8 @@ SHELL:=/bin/bash
 TEST_DIRECTORY=tests/test-directory/
 LINT_JOBS=0 # auto-detect number of processors
 
-.PHONY: build check clean develop lint run report requirements test update_references
+.PHONY: build check clean commit test lint develop env install install-user lint report requirements \
+	requirements-dev run test uninstall update-references
 
 build:
 	$(info Building scripts)
@@ -33,15 +34,19 @@ env:
 	python -m venv .venv
 
 install:
-	$(info Installing package to users .local/)
+	$(info Installing package)
 	python setup.py install --record files.log
+
+install-user:
+	$(info Installing package to users .local/)
+	python setup.py install --user --record files.log
 
 lint:
 	$(info Linting source and test files)
 	find src/ tests/ -name "*.py" | xargs pylint --rcfile=.pylintrc --jobs=$(LINT_JOBS) --output-format=colorized --verbose
 
 report:
-	$(info Genereting report with pylint and  removing lint results with sed)
+	$(info Genereting report with pylint and removing lint results with sed)
 	@find src/ tests/ -name "*.py" | \
 		xargs pylint --jobs=$(LINT_JOBS) --reports=y --persistent=n --score=n --msg-template="" | \
 		sed -e/Report/\{ -e:1 -en\;b1 -e\} -ed | less
@@ -49,6 +54,10 @@ report:
 requirements:
 	$(info Installing requirements)
 	pip install -r requirements.txt
+
+requirements-dev:
+	$(info Installing development requirements)
+	pip install -r requirements-dev.txt
 
 run:
 	$(info Testing if derl runs with $(TEST_DIRECTORY) (use args="" to pass arguments))

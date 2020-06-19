@@ -28,13 +28,15 @@ the end and can be sorted, filtered and further processed with tools like sed, a
 ## [Install](#install)
 
 ```sh
-# Makefile targets
-make requirements build install
+# Makefile targets without a Python Virtual Environment
+make requirements install-user
 
-# Or without makefile
+# Or without makefile inside a Python Virtual Environment
+python -m venv .venv_run
+source .venv_run/bin/activate
 pip install -r requirements.txt
-python setup.py build
 python setup.py install --user --record files.log
+deactivate
 ```
 
 This way of installation will copy files to $HOME/.local/ and will create files.log storing
@@ -108,9 +110,13 @@ optional arguments:
 make requirements test develop
 
 # Or without Makefile
+python -m venv .venv_run
+source .venv_run/bin/activate
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 python setup.py test
-python setup.py develop --user
+python setup.py develop
+deactivate
 ```
 
 ### Linting
