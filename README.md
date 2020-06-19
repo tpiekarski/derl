@@ -1,6 +1,8 @@
 # derl
 
-[Overview](#overview) / [Features](#features) / [Running](#running) / [Usage](#usage) /
+[![Build Status](https://travis-ci.org/tpiekarski/derl.svg?branch=master)](https://travis-ci.org/tpiekarski/derl)
+
+[Overview](#overview) / [Features](#features) / [Install](#install) / [Run](#run) / [Usage](#usage) /
 [Development](#development) / [Structures](#structures) / [References](#references)
 
 *A CLI utility for searching for **de**ad U**RL**s inside the files of a directory.*
@@ -25,7 +27,32 @@ the end and can be sorted, filtered and further processed with tools like sed, a
 - Common verbosity by default arguments (```-v|-vv```) with a lot of output for information and debugging
 - Utilities name sounds little bit like one guy hunting for other dead things in the 10th season already ;)
 
-## [Running](#running)
+## [Install](#install)
+
+```sh
+# Makefile targets without a Python Virtual Environment
+make requirements install-user
+
+# Or without makefile inside a Python Virtual Environment
+python -m venv .venv_run
+source .venv_run/bin/activate
+pip install -r requirements.txt
+python setup.py install --user --record files.log
+deactivate
+```
+
+This way of installation will copy files to $HOME/.local/ and will create files.log storing
+all installed files for convenient removing. To uninstall run the following:
+
+```sh
+# Makefile target
+make uninstall
+
+# Or without makefile something like this:
+xargs rm -rvf < files.log && rm -fv files.log
+```
+
+## [Run](#run)
 
 ```sh
 derl --dispatch directory
@@ -85,9 +112,13 @@ optional arguments:
 make requirements test develop
 
 # Or without Makefile
+python -m venv .venv_run
+source .venv_run/bin/activate
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 python setup.py test
-python setup.py develop --user
+python setup.py develop
+deactivate
 ```
 
 ### Linting
