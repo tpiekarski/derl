@@ -63,6 +63,10 @@ run:
 	$(info Testing if derl runs with $(TEST_DIRECTORY) (use args="" to pass arguments))
 	derl $(TEST_DIRECTORY) $(args)
 
+sonar:
+	$(info Running Sonar Scanner)
+	sonar-scanner -Dsonar.login=${SONAR_KEY}
+
 test:
 	$(info Running functional and unit tests)
 	python setup.py test
