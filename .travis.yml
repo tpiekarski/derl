@@ -24,13 +24,15 @@ script:
   - make run
   - make uninstall
   - make clean
-  - sonar-scanner
 
-addons:
-  sonarcloud:
-    organization: "tpiekarski-github"
-    token:
-      secure: "D9b/Hu1byz0lj2J2mJUYFjoUWuUS7b3AG2cJZyDQfm+FYXtYnEWH1pS8V5Oea/9TXQSAfTR/ZAPzB64UqbzrIb+Yt4cl7LalGlNyzYVyuBMqJlIkeKyT/r4S4HDeiIFWMbuExfFSZDtR4E7+2i5709vOaduvlnMymAv/ACnpAJN/3DsVbz0KQcBqKDrkiZa8jMLDvXxH5/fy240f3fSN/RjhFrd7dgxCssyxg9D+bDLKj8m7KWPZZc/Mg3jncwxlSJB3ta/z8L29inbHHKfww4orC3FIEUp8EVa8ov3QVHoJ+wrS1VS7okJBavztuRwBtp+XnjEgzuu/Uu2DnTYdPYac+CDxu+XMA26EhOzhSm/NmL4y0GQGJAJ02rJe1Ay6sEb9MUelEBvBJnRpODoToQOdJ2ypYmiCoAYAXvnDhhepgfnXVSw5wrLgZN8lmzGUrH7QKPTEb/OMgSV4P5BemMEUf4U6bsc5Xy41pmpqmNNXWlVBhfBKR08rk85az+8aPeGwqIAzQQAOg67BkOA+3q4WlSKCP/XbDj/05Cx5AXgLrKoPdnqVUodc4jitGB1zE2yvpWBp69j/WDP6QPgnt3FSkAzrQkUH5/vNEqR5fl/Xuq3WY4Rcma7t3PyBm2Z5XqHaYbgwlPMeyKsdy8mduXAxWeUoCQ5I7IWZV8Xu8vo="
+#
+# SonarCloud Project Setup will be using automatic scanning
+#
+# addons:
+#   sonarcloud:
+#     organization: "tpiekarski-github"
+#     token:
+#       secure: "D9b/Hu1byz0lj2J2mJUYFjoUWuUS7b3AG2cJZyDQfm+FYXtYnEWH1pS8V5Oea/9TXQSAfTR/ZAPzB64UqbzrIb+Yt4cl7LalGlNyzYVyuBMqJlIkeKyT/r4S4HDeiIFWMbuExfFSZDtR4E7+2i5709vOaduvlnMymAv/ACnpAJN/3DsVbz0KQcBqKDrkiZa8jMLDvXxH5/fy240f3fSN/RjhFrd7dgxCssyxg9D+bDLKj8m7KWPZZc/Mg3jncwxlSJB3ta/z8L29inbHHKfww4orC3FIEUp8EVa8ov3QVHoJ+wrS1VS7okJBavztuRwBtp+XnjEgzuu/Uu2DnTYdPYac+CDxu+XMA26EhOzhSm/NmL4y0GQGJAJ02rJe1Ay6sEb9MUelEBvBJnRpODoToQOdJ2ypYmiCoAYAXvnDhhepgfnXVSw5wrLgZN8lmzGUrH7QKPTEb/OMgSV4P5BemMEUf4U6bsc5Xy41pmpqmNNXWlVBhfBKR08rk85az+8aPeGwqIAzQQAOg67BkOA+3q4WlSKCP/XbDj/05Cx5AXgLrKoPdnqVUodc4jitGB1zE2yvpWBp69j/WDP6QPgnt3FSkAzrQkUH5/vNEqR5fl/Xuq3WY4Rcma7t3PyBm2Z5XqHaYbgwlPMeyKsdy8mduXAxWeUoCQ5I7IWZV8Xu8vo="
 
 notifications:
   email: false
