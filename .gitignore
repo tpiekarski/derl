@@ -29,12 +29,13 @@ tags
 *.egg-info
 
 # Unittest and coverage
-htmlcov/*
 .coverage
-.tox
-junit.xml
-coverage.xml
 .pytest_cache/
+.tox
+coverage.xml
+htmlcov/*
+junit.xml
+pytest-report.xml
 
 # Build folder/files
 build/*
