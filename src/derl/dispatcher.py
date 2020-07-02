@@ -30,17 +30,17 @@ def request(files, retry=_DEFAULT_RETRY, timeout=_DEFAULT_TIMEOUT):
     for current_file in files:
         for current_url in current_file.urls:
             try:
-                session.mount(current_url.url, http_adaptor)
-                _logger.debug("Requesting status code for %s", current_url.url)
-                current_url.status_code = requests.get(current_url.url, timeout=timeout).status_code
+                session.mount(current_url.location, http_adaptor)
+                _logger.debug("Requesting status code for %s", current_url.location)
+                current_url.status_code = requests.get(current_url.location, timeout=timeout).status_code
             except Timeout:
-                _logger.debug("Waited for %i seconds, giving up getting %s", timeout, current_url.url)
+                _logger.debug("Waited for %i seconds, giving up getting %s", timeout, current_url.location)
                 current_url.status_code = 0
             except TooManyRedirects:
-                _logger.debug("Redirection Tango, danced enough with %s", current_url.url)
+                _logger.debug("Redirection Tango, danced enough with %s", current_url.location)
                 current_url.status_code = 0
             except RequestConnectionError:
-                _logger.debug("Connection Error occurred while getting %s", current_url.url)
+                _logger.debug("Connection Error occurred while getting %s", current_url.location)
                 current_url.status_code = 0
 
     return files

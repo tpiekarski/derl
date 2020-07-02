@@ -17,20 +17,20 @@ def _normalize_context(context):
 
 
 class URL:
-    url = None
+    location = None
     status_code = None
     line_number = None
     context = []
 
-    def __init__(self, url, line_number):
-        self.url = url
+    def __init__(self, location, line_number):
+        self.location = location
         self.line_number = line_number
 
     def __str__(self):
         if self.status_code is None:
-            output = "{}, {}".format(self.line_number, self.url)
+            output = "{}, {}".format(self.line_number, self.location)
         else:
-            output = "{}, {}, {}".format(self.line_number, self.status_code, self.url)
+            output = "{}, {}, {}".format(self.line_number, self.status_code, self.location)
 
         if self.is_context_present():
             output += "\n"

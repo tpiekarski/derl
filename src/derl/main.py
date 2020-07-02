@@ -26,10 +26,9 @@ _logger = getLogger(__name__)
 
 
 def setup_logging(loglevel):
-    logformat = "[%(asctime)s] %(levelname)s:%(name)s:%(message)s"
     basicConfig(
         datefmt="%Y-%m-%d %H:%M:%S",
-        format=logformat,
+        format="[%(asctime)s] %(levelname)s:%(name)s:%(message)s",
         level=loglevel,
         stream=sys.stdout
     )
