@@ -5,14 +5,19 @@
 #
 
 from logging import getLogger
+from derl.model.stats import get_stats
 
 _logger = getLogger(__name__)
+_stats = get_stats()
 
 
-def output(files):
+def output(files, stats=False):
     if len(files) == 0:
         _logger.debug("No matched files for output")
         return
 
     for file in files:
         print(file, end="")
+
+    if stats:
+        print(_stats)

@@ -10,6 +10,7 @@ from re import compile as rcompile, IGNORECASE
 
 from derl.checker import is_text_file, is_url
 from derl.model.file import File
+from derl.model.stats import get_stats
 from derl.model.url import URL
 
 
@@ -17,10 +18,12 @@ _STARTING_LINE_NUMBER = 1
 
 _logger = getLogger(__name__)
 _pattern = rcompile(r"^(http|https):\/\/.*$", IGNORECASE)
+_stats = get_stats()
 
 
 def process_file(file):
     _logger.debug("Spliting current file %s into lines...", file.name)
+    _stats.inc_files()
 
     try:
         lines = list(enumerate(file.readlines(), _STARTING_LINE_NUMBER))
@@ -44,6 +47,8 @@ def process_file(file):
 
 def process_line(file, line, urls):
     _logger.debug("Splitting current line into tokens...")
+    _stats.inc_lines()
+
     line_number, line_content = line
     tokens = line_content.split()
 
@@ -63,11 +68,14 @@ def process_line(file, line, urls):
 
 
 def process_token(file, token, line_number):
+    _stats.inc_tokens()
+
     match = _pattern.match(token)
     url = None
 
     if match and is_url(match.string):
         _logger.info("Found a match (%s) in file '%s'", match.string, file.name)
+        _stats.inc_urls()
         url = URL(match.string, line_number)
 
     return url
@@ -75,6 +83,7 @@ def process_token(file, token, line_number):
 
 def process_directory(directory, files):
     _logger.info("Starting to process directory '%s'", directory)
+    _stats.inc_directories()
 
     try:
         path = Path(directory)
