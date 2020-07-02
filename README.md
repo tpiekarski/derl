@@ -4,28 +4,29 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tpiekarski_derl&metric=alert_status)](https://sonarcloud.io/dashboard?id=tpiekarski_derl)
 
 [Overview](#overview) / [Features](#features) / [Install](#install) / [Run](#run) / [Usage](#usage) /
-[Development](#development) / [Structures](#structures) / [References](#references)
+[Development](#development) / [Structures](#structures) / [Links](#links)
 
-*A CLI utility for searching for **de**ad U**RL**s inside the files of a directory.*
+*CLI utility for searching **de**ad U**RL**s inside files*
 
 ## [Overview](#overview)
 
-The CLI utility takes a directory, finds all files recursively, looks for valid URLs and sends
-an HTTP GET request. All returning HTTP Status Codes are gathered in a list which is printed at
-the end and can be sorted, filtered and further processed with tools like sed, awk and grep.
+The CLI utility takes a directory, finds all files recursively and looks for valid URLs. For every
+URL an HTTP GET request is sent. All returning HTTP Status Codes are gathered in a list which is
+written to *stdout* and can be sorted, filtered and further processed with tools like sed, awk and
+grep.
 
 ## [Features](#features)
 
 - Passing a command line argument with the directory to process
-- Iterating over all subdirectories and gathering a list of all files
-  (At the moment only UTF-8, including relative paths and skipping any binary files)
+- Iterating over subdirectories and gathering a list of all files. At the moment only UTF-8 is
+  supported, including relative paths are saved and any binary file is skipped.
 - Search for valid [URLs](https://developer.mozilla.org/en-US/docs/Glossary/URL) (http and https)
-  inside the file list and store all found URLs
+  inside the files and store all found URLs
 - Send an optional [HTTP GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request
   to all URLs with custom timeout and retry (soon multi-threaded)
 - Record all returning [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 - Output a list of files, urls and line numbers (optional with context up to 3 lines)
-- Common verbosity by default arguments (```-v|-vv```) with a lot of output for information and debugging
+- Common verbosity by default arguments (```-v|-vv```) with additional output for information and debugging
 - Utilities name sounds little bit like one guy hunting for other dead things in the 10th season already ;)
 
 ## [Install](#install)
@@ -42,8 +43,8 @@ python setup.py install --user --record files.log
 deactivate
 ```
 
-This way of installation will copy files to $HOME/.local/ and will create files.log storing
-all installed files for convenient removing. To uninstall run the following:
+This way of installation will copy files to $HOME/.local/ and create *files.log* storing
+a log of all installed files for convenient removal. To uninstall run the following:
 
 ```sh
 # Makefile target
@@ -207,9 +208,9 @@ derl tests/test-directory/ -d > tests/references/output-without-context-with-dis
 derl tests/test-directory/ --context --dispatch > tests/references/output-with-context-with-dispatch.out
 ```
 
-## [References](#references)
+## [Links](#links)
 
-- Digital Ocean, [How To Use String Formatters in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-string-formatters-in-python-3)
+- Digital Ocean, [How-To Use String Formatters in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-string-formatters-in-python-3)
 - Findwork, [Advanced usage of Python requests - timeouts, retries, hooks](https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/)
 - Geeks for geeks, [Testing Output to stdout](https://www.geeksforgeeks.org/python-testing-output-to-stdout/)
 - GitHub, [Python Primer for Java Developers](https://lobster1234.github.io/2017/05/25/python-java-primer/)
@@ -217,9 +218,8 @@ derl tests/test-directory/ --context --dispatch > tests/references/output-with-c
 - Medium, [What the mock? — A cheatsheet for mocking in Python](https://medium.com/@yeraydiazdiaz/what-the-mock-cheatsheet-mocking-in-python-6a71db997832)
 - Programiz, [Python Tuple](https://www.programiz.com/python-programming/tuple)
 - Pylint Tutorial, [A Beginner’s Guide to Code Standards in Python](https://docs.pylint.org/en/1.6.0/tutorial.html)
-- PyScaffold, [Examples](https://pyscaffold.org/en/latest/examples.html)
-- PyScaffold, [Installation](https://pyscaffold.org/en/latest/install.html)
-- Python HOW TOS, [Sorting HOW TO](https://docs.python.org/3/howto/sorting.html)
+- PyScaffold, [Installation](https://pyscaffold.org/en/latest/install.html) and [Examples](https://pyscaffold.org/en/latest/examples.html)
+- Python How-To, [Sorting How-To](https://docs.python.org/3/howto/sorting.html)
 - Python Reference, [argparse — Parser for command-line options, arguments and sub-commands](https://docs.python.org/3/library/argparse.html#action)
 - Python Reference, [Basic customization to data models](https://docs.python.org/3/reference/datamodel.html#customization)
 - Python Reference, [Mock Object Library](https://docs.python.org/3/library/unittest.mock.html)
