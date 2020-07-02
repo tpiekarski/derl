@@ -15,15 +15,9 @@ build:
 	$(info Building scripts)
 	python setup.py build
 
-check:
-	$(info Checking package)
-	python setup.py check
-
 clean:
 	$(info Cleaning build directories)
 	python setup.py clean
-
-commit: test lint
 
 develop:
 	$(info Install package in development mode)
@@ -45,6 +39,8 @@ lint:
 	$(info Linting source and test files)
 	find src/ tests/ -name "*.py" | xargs pylint --rcfile=.pylintrc --jobs=$(LINT_JOBS) --output-format=colorized --verbose
 
+pre-commit: run test lint
+
 report:
 	$(info Genereting report with pylint and removing lint results with sed)
 	@find src/ tests/ -name "*.py" | \
@@ -64,7 +60,7 @@ run:
 	derl $(TEST_DIRECTORY) $(args)
 
 sonar:
-	$(info Running Sonar Scanner)
+	$(info Running Sonar Scanner (only when automatic analysis is turned off))
 	sonar-scanner -Dsonar.login=${SONAR_KEY}
 
 test:
@@ -78,7 +74,7 @@ uninstall:
 		|| echo "No files.log found in root directory, please run 'make install' again."
 
 update-references:
-	$(info Updating reference output)
+	$(info Updating reference output in 'tests/references')
 	derl $(TEST_DIRECTORY) > tests/references/output-without-context-without-dispatch.out
 	derl $(TEST_DIRECTORY) --context > tests/references/output-with-context-without-dispatch.out 
 	derl $(TEST_DIRECTORY) -d > tests/references/output-without-context-with-dispatch.out
