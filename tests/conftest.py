@@ -7,12 +7,8 @@
 """
     Dummy conftest.py for derl.
 
-    If you don't know what this is for, just leave it empty.
-    Read more about conftest.py under:
-    https://pytest.org/latest/plugins.html
+    Read more about conftest.py under: https://pytest.org/latest/plugins.html
 """
-
-# import pytest
 
 _TEST_DIRECTORY = "tests/test-directory"
 _TEST_REQUEST_RETRIES = 6
