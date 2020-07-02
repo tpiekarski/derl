@@ -5,10 +5,10 @@
 #
 
 from logging import getLogger
-from derl.model.stats import get_stats
+from derl.tracker import get_tracker
 
 _logger = getLogger(__name__)
-_stats = get_stats()
+_tracker = get_tracker()
 
 
 def output(files, stats=False):
@@ -20,4 +20,4 @@ def output(files, stats=False):
         print(file, end="")
 
     if stats:
-        print(_stats)
+        print(_tracker)

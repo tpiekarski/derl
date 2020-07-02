@@ -13,18 +13,18 @@ from derl.checker import check_arguments
 from derl.collector import collect_context
 from derl.dispatcher import request
 from derl.filterer import filter_not_matching
-from derl.model.stats import get_stats
 from derl.outputer import output
 from derl.parser import parse_args
 from derl.processor import process_directory
 from derl.searcher import search_urls
+from derl.tracker import get_tracker
 
 __author__ = "Thomas Piekarski"
 __copyright__ = "Thomas Piekarski"
 __license__ = "mit"
 
 _logger = getLogger(__name__)
-_stats = get_stats()
+_tracker = get_tracker()
 
 
 def setup_logging(loglevel):
@@ -41,7 +41,7 @@ def main(args):
     setup_logging(args.loglevel)
     check_arguments(args)
 
-    _stats.start()
+    _tracker.start()
     processed_directories = process_directory(args.directory, [])
     searched_files = search_urls(processed_directories)
     filtered_files = filter_not_matching(searched_files)
@@ -52,7 +52,7 @@ def main(args):
     if args.context:
         filtered_files = collect_context(filtered_files)
 
-    _stats.stop()
+    _tracker.stop()
     output(filtered_files, args.stats)
 
     sys.exit(0)

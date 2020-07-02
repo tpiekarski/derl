@@ -10,10 +10,10 @@ import requests
 
 from requests import ConnectionError as RequestConnectionError, Session, Timeout, TooManyRedirects
 from requests.adapters import HTTPAdapter
-from derl.model.stats import get_stats
+from derl.tracker import get_tracker
 
 _logger = logging.getLogger(__name__)
-_stats = get_stats()
+_tracker = get_tracker()
 
 _DEFAULT_RETRY = 3
 _DEFAULT_TIMEOUT = 10
@@ -34,7 +34,7 @@ def request(files, retry=_DEFAULT_RETRY, timeout=_DEFAULT_TIMEOUT):
             try:
                 session.mount(current_url.location, http_adaptor)
                 _logger.debug("Requesting status code for %s", current_url.location)
-                _stats.inc_requests()
+                _tracker.stats.inc_requests()
                 current_url.status_code = requests.get(current_url.location, timeout=timeout).status_code
             except Timeout:
                 _logger.debug("Waited for %i seconds, giving up getting %s", timeout, current_url.location)

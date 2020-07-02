@@ -4,23 +4,8 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-from time import perf_counter
 
-
-class Singleton(type):
-    _instances = {}
-
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
-
-        return cls._instances[cls]
-
-
-class Stats(metaclass=Singleton):
-    start_time = None
-    stop_time = None
-
+class Stats():
     directories_processed = 0
     files_processed = 0
     lines_processed = 0
@@ -30,9 +15,6 @@ class Stats(metaclass=Singleton):
 
     def __str__(self):
         output = ""
-
-        if self.start_time is not None and self.stop_time is not None:
-            output += "\nFinished checking URLs after {0:.2f} second(s).\n".format(self.calc_time())
 
         output += "---\n"
         output += "Directories:\t{0}\n".format(self.directories_processed)
@@ -46,15 +28,6 @@ class Stats(metaclass=Singleton):
 
     def __repr__(self):
         return self.__str__()
-
-    def start(self):
-        self.start_time = perf_counter()
-
-    def stop(self):
-        self.stop_time = perf_counter()
-
-    def calc_time(self):
-        return round(self.stop_time - self.start_time)
 
     def inc_directories(self):
         self.directories_processed += 1
@@ -73,7 +46,3 @@ class Stats(metaclass=Singleton):
 
     def inc_requests(self):
         self.requests_sent += 1
-
-
-def get_stats():
-    return Stats()
