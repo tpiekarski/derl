@@ -25,6 +25,9 @@ script:
   - make uninstall
   - make clean
 
+after_success:
+  - coveralls
+
 #
 # SonarCloud Project Setup will be using automatic scanning
 #
