@@ -6,6 +6,7 @@
 
 import sys
 
+from argparse import Namespace
 from logging import getLogger
 from os import path
 from magic import from_file
@@ -18,32 +19,32 @@ _INVALID_RETRY = -3
 _logger = getLogger(__name__)
 
 
-def is_directory(value):
+def is_directory(value: str) -> bool:
     _logger.debug("Checking provided directory %s", value)
 
     return path.isdir(value)
 
 
-def is_retry_value(value):
+def is_retry_value(value: str) -> bool:
     return 0 < value <= 10
 
 
-def is_text_file(file):
+def is_text_file(file: str) -> bool:
     _logger.debug("Checking file %s", file)
     mimetype = from_file(str(file), mime=True)
 
     return file.is_file() and mimetype[:4] == "text"
 
 
-def is_timeout_value(value):
+def is_timeout_value(value: int) -> bool:
     return value > 0
 
 
-def is_url(value):
+def is_url(value: str) -> bool:
     return url(value)
 
 
-def check_arguments(args):
+def check_arguments(args: Namespace):
     if not is_timeout_value(args.timeout):
         _logger.error("Invalid timeout, timeout must be greater than 0")
         sys.exit(_INVALID_TIMEOUT)

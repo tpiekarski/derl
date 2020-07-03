@@ -4,14 +4,14 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-from argparse import ArgumentParser, HelpFormatter
+from argparse import ArgumentParser, HelpFormatter, Namespace
 from logging import DEBUG, INFO
 
 from derl import __version__
 from derl.dispatcher import _DEFAULT_RETRY, _DEFAULT_TIMEOUT
 
 
-def parse_args(args):
+def parse_args(args: list) -> Namespace:
     parser = ArgumentParser(
         prog="derl",
         formatter_class=lambda prog: HelpFormatter(prog, max_help_position=35, width=90),

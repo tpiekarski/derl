@@ -6,12 +6,14 @@
 
 from logging import getLogger
 
+from derl.model.url import URL
+
 _logger = getLogger(__name__)
 
 _DEFAULT_ENCODING = "utf-8"
 
 
-def _extract_context(url, lines):
+def _extract_context(url: URL, lines: list) -> list:
     context = []
     line_index = url.line_number - 1
 
@@ -26,7 +28,7 @@ def _extract_context(url, lines):
     return context
 
 
-def collect_context(files):
+def collect_context(files: list) -> list:
     for current_file in files:
         for current_url in current_file.urls:
             with open(current_file.filename, "r", encoding=_DEFAULT_ENCODING) as open_file:

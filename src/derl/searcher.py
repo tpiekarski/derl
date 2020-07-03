@@ -13,7 +13,7 @@ _logger = getLogger(__name__)
 _DEFAULT_ENCODING = "utf-8"
 
 
-def search_urls(files):
+def search_urls(files: list) -> list:
     _logger.info("Starting to search for URLs in %i files...", len(files))
 
     if len(files) == 0:

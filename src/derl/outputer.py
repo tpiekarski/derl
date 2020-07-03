@@ -11,7 +11,7 @@ _logger = getLogger(__name__)
 _tracker = get_tracker()
 
 
-def output(files, stats=False):
+def output(files: list, stats: bool = False):
     if len(files) == 0:
         _logger.debug("No matched files for output")
         return

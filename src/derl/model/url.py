@@ -7,7 +7,7 @@
 _CONTEXT_OUTPUT_MAP = {0: "", 1: "  {}\n", 2: "  {}\n  {}\n", 3: "  {}\n  {}\n  {}\n"}
 
 
-def _normalize_context(context):
+def _normalize_context(context: list) -> list:
     normalized_context = []
 
     for current_line in context:
@@ -22,11 +22,11 @@ class URL:
     line_number = None
     context = []
 
-    def __init__(self, location, line_number):
+    def __init__(self: "URL", location: str, line_number: int):
         self.location = location
         self.line_number = line_number
 
-    def __str__(self):
+    def __str__(self: "URL") -> str:
         if self.status_code is None:
             output = "{}, {}".format(self.line_number, self.location)
         else:
@@ -38,11 +38,11 @@ class URL:
 
         return output
 
-    def __repr__(self):
+    def __repr__(self: "URL") -> str:
         return self.__str__()
 
-    def is_context_present(self):
-        return len(self.context)
+    def is_context_present(self: "URL") -> bool:
+        return len(self.context) > 0
 
-    def set_context(self, context):
+    def set_context(self: "URL", context: list):
         self.context = _normalize_context(context)

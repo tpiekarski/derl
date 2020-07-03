@@ -12,7 +12,7 @@ from derl.model.stats import Stats
 class Singleton(type):
     _instances = {}
 
-    def __call__(cls, *args, **kwargs):
+    def __call__(cls: "Singleton", *args: tuple, **kwargs: dict) -> "Tracker":
         if cls not in cls._instances:
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
 
@@ -25,29 +25,29 @@ class Tracker(metaclass=Singleton):
     stats = Stats()
     test = False
 
-    def start(self):
+    def start(self: "Tracker"):
         if self.start_time is None:
             self.start_time = perf_counter()
 
-    def stop(self):
+    def stop(self: "Tracker"):
         if self.stop_time is None:
             self.stop_time = perf_counter()
 
-    def calc_time(self):
+    def calc_time(self: "Tracker") -> float:
         if self.test:
             return -1
 
         return round(self.stop_time - self.start_time)
 
-    def reset(self):
+    def reset(self: "Tracker"):
         self.start_time = 0
         self.stop_time = 0
         self.stats = Stats()
 
-    def set_test(self):
+    def set_test(self: "Tracker"):
         self.test = True
 
-    def __str__(self):
+    def __str__(self: "Tracker") -> str:
         output = ""
 
         if self.start_time is not None and self.stop_time is not None:
@@ -57,9 +57,9 @@ class Tracker(metaclass=Singleton):
 
         return output
 
-    def __repr__(self):
+    def __repr__(self: "Tracker") -> str:
         return self.__str__()
 
 
-def get_tracker():
+def get_tracker() -> "Tracker":
     return Tracker()

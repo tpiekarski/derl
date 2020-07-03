@@ -27,7 +27,7 @@ _logger = getLogger(__name__)
 _tracker = get_tracker()
 
 
-def setup_logging(loglevel):
+def setup_logging(loglevel: int):
     basicConfig(
         datefmt="%Y-%m-%d %H:%M:%S",
         format="[%(asctime)s] %(levelname)s:%(name)s:%(message)s",
@@ -36,7 +36,7 @@ def setup_logging(loglevel):
     )
 
 
-def main(args):
+def main(args: list):
     args = parse_args(args)
     setup_logging(args.loglevel)
     check_arguments(args)
