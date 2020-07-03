@@ -1,7 +1,6 @@
 # derl
 
-[![Build Status](https://travis-ci.org/tpiekarski/derl.svg?branch=master)](https://travis-ci.org/tpiekarski/derl)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tpiekarski_derl&metric=alert_status)](https://sonarcloud.io/dashboard?id=tpiekarski_derl)
+[![Build Status](https://travis-ci.org/tpiekarski/derl.svg?branch=master)](https://travis-ci.org/tpiekarski/derl) [![Coverage Status](https://coveralls.io/repos/github/tpiekarski/derl/badge.svg?branch=feature/integrate-coveralls)](https://coveralls.io/github/tpiekarski/derl?branch=feature/integrate-coveralls) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tpiekarski_derl&metric=alert_status)](https://sonarcloud.io/dashboard?id=tpiekarski_derl)
 
 [Overview](#overview) / [Features](#features) / [Install](#install) / [Run](#run) / [Usage](#usage) /
 [Development](#development) / [Structures](#structures) / [Links](#links)
