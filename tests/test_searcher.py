@@ -11,5 +11,5 @@ from derl.searcher import search_urls
 
 class SearcherTest(TestCase):
 
-    def test_search_urls_without_any_files(self):
+    def test_search_urls_without_any_files(self: "SearcherTest"):
         self.assertEqual(search_urls([]), [])
