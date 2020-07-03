@@ -60,6 +60,10 @@ run:
 	$(info Testing if derl runs with $(TEST_DIRECTORY) (use args="" to pass arguments))
 	derl $(TEST_DIRECTORY) $(args)
 
+show-function-signatures:
+	$(info Showing all function (and method) signatures)
+	find src/ tests/ -name "*.py" | xargs grep -E "def.*\(.*\).*:"
+
 sonar:
 	$(info Running Sonar Scanner (only when automatic analysis is turned off))
 	sonar-scanner -Dsonar.login=${SONAR_KEY}

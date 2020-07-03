@@ -13,7 +13,7 @@ class Stats():
     tokens = 0
     urls = 0
 
-    def __str__(self):
+    def __str__(self: "Stats") -> str:
         output = "Processed Directories/Files/Lines/Tokens/URLs: {0:d}/{1:d}/{2:d}/{3:d}/{4:d}".format(
             self.directories, self.files, self.lines, self.tokens, self.urls
         )
@@ -23,23 +23,23 @@ class Stats():
 
         return output
 
-    def __repr__(self):
+    def __repr__(self: "Stats") -> str:
         return self.__str__()
 
-    def inc_directories(self):
+    def inc_directories(self: "Stats"):
         self.directories += 1
 
-    def inc_files(self):
+    def inc_files(self: "Stats"):
         self.files += 1
 
-    def inc_lines(self):
+    def inc_lines(self: "Stats"):
         self.lines += 1
 
-    def inc_tokens(self):
+    def inc_tokens(self: "Stats"):
         self.tokens += 1
 
-    def inc_urls(self):
+    def inc_urls(self: "Stats"):
         self.urls += 1
 
-    def inc_requests(self):
+    def inc_requests(self: "Stats"):
         self.requests += 1

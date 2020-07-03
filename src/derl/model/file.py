@@ -11,11 +11,11 @@ class File:
     filename = None
     urls: []
 
-    def __init__(self, filename):
+    def __init__(self: "File", filename: str):
         self.filename = filename
         self.urls = []
 
-    def __str__(self):
+    def __str__(self: "File") -> str:
         output = ""
 
         for current_url in self.urls:
@@ -23,11 +23,11 @@ class File:
 
         return output
 
-    def __repr__(self):
+    def __repr__(self: "File") -> str:
         return self.__str__()
 
-    def append(self, url, line_number):
+    def append(self: "File", url: str, line_number: int):
         self.urls.append(URL(url, line_number))
 
-    def contains_urls(self):
+    def contains_urls(self: "File") -> bool:
         return len(self.urls) > 0

@@ -7,6 +7,7 @@
 from logging import getLogger
 from pathlib import Path
 from re import compile as rcompile, IGNORECASE
+from typing import TextIO
 
 from derl.checker import is_text_file, is_url
 from derl.model.file import File
@@ -20,7 +21,7 @@ _pattern = rcompile(r"^(http|https):\/\/.*$", IGNORECASE)
 _tracker = get_tracker()
 
 
-def process_file(file):
+def process_file(file: TextIO) -> list:
     _logger.debug("Spliting current file %s into lines...", file.name)
     _tracker.stats.inc_files()
 
@@ -44,7 +45,7 @@ def process_file(file):
     return urls
 
 
-def process_line(file, line, urls):
+def process_line(file: TextIO, line: tuple, urls: list) -> list:
     _logger.debug("Splitting current line into tokens...")
     _tracker.stats.inc_lines()
 
@@ -66,7 +67,7 @@ def process_line(file, line, urls):
     return urls
 
 
-def process_token(file, token, line_number):
+def process_token(file: TextIO, token: str, line_number: int) -> URL:
     _tracker.stats.inc_tokens()
 
     match = _pattern.match(token)
@@ -80,7 +81,7 @@ def process_token(file, token, line_number):
     return url
 
 
-def process_directory(directory, files):
+def process_directory(directory: str, files: list) -> list:
     _logger.info("Starting to process directory '%s'", directory)
     _tracker.stats.inc_directories()
 
@@ -89,7 +90,7 @@ def process_directory(directory, files):
         for current in path.iterdir():
             if current.is_dir():
                 _logger.debug("'%s' is a directory, descending...", current.name)
-                files = process_directory(current, files)
+                files = process_directory(str(current), files)
             elif is_text_file(current):
                 _logger.debug("Appending file '%s'", current.name)
                 files.append(File(current))

@@ -19,7 +19,7 @@ _DEFAULT_RETRY = 3
 _DEFAULT_TIMEOUT = 10
 
 
-def request(files, retry=_DEFAULT_RETRY, timeout=_DEFAULT_TIMEOUT):
+def request(files: list, retry: int = _DEFAULT_RETRY, timeout: int = _DEFAULT_TIMEOUT) -> list:
     if len(files) == 0:
         _logger.debug("No matches for HTTP requests")
         return []

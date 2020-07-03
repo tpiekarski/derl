@@ -27,7 +27,7 @@ class MainTest(TestCase):
 
     maxDiff = None
 
-    def _reference_testing(self, arguments, reference):
+    def _reference_testing(self: "MainTest", arguments: list, reference: str):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:
             with open(reference, "r") as opened_reference:
                 with raises(SystemExit) as wrapped_exit:
@@ -37,57 +37,57 @@ class MainTest(TestCase):
                 self.assertEqual(wrapped_exit.value.code, 0)
                 self.assertEqual(fake_stdout.getvalue(), opened_reference.read())
 
-    def test_main_without_context_without_dispatch(self):
+    def test_main_without_context_without_dispatch(self: "MainTest"):
         self._reference_testing([_TEST_DIRECTORY], "tests/references/output-without-context-without-dispatch.out")
 
-    def test_main_with_context_without_dispatch(self):
+    def test_main_with_context_without_dispatch(self: "MainTest"):
         self._reference_testing([_TEST_DIRECTORY, "--context"],
                                 "tests/references/output-with-context-without-dispatch.out")
 
-    def test_main_without_context_with_dispatch(self):
+    def test_main_without_context_with_dispatch(self: "MainTest"):
         self._reference_testing([_TEST_DIRECTORY, "--dispatch"],
                                 "tests/references/output-without-context-with-dispatch.out")
 
-    def test_main_with_context_with_dispatch(self):
+    def test_main_with_context_with_dispatch(self: "MainTest"):
         self._reference_testing([_TEST_DIRECTORY, "--context", "--dispatch"],
                                 "tests/references/output-with-context-with-dispatch.out")
 
-    def test_main_with_stats_without_dispatch(self):
+    def test_main_with_stats_without_dispatch(self: "MainTest"):
         _tracker.set_test()
         _tracker.reset()
 
         self._reference_testing([_TEST_DIRECTORY, "--stats"],
                                 "tests/references/output-with-stats-without-dispatch.out")
 
-    def test_main_with_stats_with_dispatch(self):
+    def test_main_with_stats_with_dispatch(self: "MainTest"):
         _tracker.set_test()
         _tracker.reset()
 
         self._reference_testing([_TEST_DIRECTORY, "--stats", "--dispatch"],
                                 "tests/references/output-with-stats-with-dispatch.out")
 
-    def test_main_with_not_existing_directory(self):
+    def test_main_with_not_existing_directory(self: "MainTest"):
         with raises(SystemExit) as wrapped_exit:
             main(["tests/not-existing"])
 
         self.assertEqual(wrapped_exit.type, SystemExit)
         self.assertEqual(wrapped_exit.value.code, _INVALID_DIRECTORY)
 
-    def test_main_with_invalid_timeout(self):
+    def test_main_with_invalid_timeout(self: "MainTest"):
         with raises(SystemExit) as wrapped_exit:
             main(["--dispatch", "--timeout", "-5", _TEST_DIRECTORY])
 
         self.assertEqual(wrapped_exit.type, SystemExit)
         self.assertEqual(wrapped_exit.value.code, _INVALID_TIMEOUT)
 
-    def test_main_with_invalid_retry(self):
+    def test_main_with_invalid_retry(self: "MainTest"):
         with raises(SystemExit) as wrapped_exit:
             main(["--dispatch", "--retry", "1000", _TEST_DIRECTORY])
 
         self.assertEqual(wrapped_exit.type, SystemExit)
         self.assertEqual(wrapped_exit.value.code, _INVALID_RETRY)
 
-    def test_run(self):
+    def test_run(self: "MainTest"):
         with patch("sys.stdout", new=StringIO()) as fake_stdout:
             with raises(SystemExit) as wrapped_exit:
                 run()
