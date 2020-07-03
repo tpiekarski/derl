@@ -6,20 +6,17 @@
 [Overview](#overview) / [Features](#features) / [Install](#install) / [Run](#run) / [Usage](#usage) /
 [Development](#development) / [Structures](#structures) / [Links](#links)
 
-*CLI utility for searching **de**ad U**RL**s inside files*
+*Command Line Interface (CLI) utility for searching **de**ad U**RL**s inside files*
 
 ## [Overview](#overview)
 
 The CLI utility takes a directory, finds all files recursively and looks for valid URLs. For every
 URL an HTTP GET request is sent. All returning HTTP Status Codes are gathered in a list which is
-written to *stdout* and can be sorted, filtered and further processed with tools like sed, awk and
-grep.
+written to *stdout*, can be sorted, filtered and further processed with tools like sed, awk or grep.
 
 ## [Features](#features)
 
-- Passing a command line argument with the directory to process
-- Iterating over subdirectories and gathering a list of all files. At the moment only UTF-8 is
-  supported, including relative paths are saved and any binary file is skipped.
+- Iterating over directories and gathering a list of all files.
 - Search for valid [URLs](https://developer.mozilla.org/en-US/docs/Glossary/URL) (http and https)
   inside the files and store all found URLs
 - Send an optional [HTTP GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request
@@ -27,7 +24,15 @@ grep.
 - Record all returning [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 - Output a list of files, urls and line numbers (optional with context up to 3 lines)
 - Common verbosity by default arguments (```-v|-vv```) with additional output for information and debugging
-- Utilities name sounds little bit like one guy hunting for other dead things in the 10th season already ;)
+- Collect statistics about processed directories, files, lines, URLs and sent requests
+- Track running time for processing files, searching URLs and dispatching requests
+
+- *Utilities name sounds like one guy hunting for other dead things in the 10th season already ;)*
+
+### Limitations
+
+- At the moment only [UTF-8](http://doc.cat-v.org/plan_9/4th_edition/papers/utf) is supported, 
+  relative paths are saved and no binary files are processed.
 
 ## [Install](#install)
 
@@ -43,8 +48,8 @@ python setup.py install --user --record files.log
 deactivate
 ```
 
-This way of installation will copy files to $HOME/.local/ and create *files.log* storing
-a log of all installed files for convenient removal. To uninstall run the following:
+This installation will copy files to ```$HOME/.local/``` and create *files.log*. This log stores 
+all installed files for convenience. To uninstall run the following:
 
 ```sh
 # Makefile target
@@ -82,12 +87,21 @@ tests/test-directory/dir-1/dir-2/test-4-dir-2.txt:4, 404, http://docs.python.org
   mauris.
 
 # [...]
+
+$ derl --stats --dispatch tests/test-directory/
+
+# [...]
+tests/test-directory/test-2-dir-0.txt:3, 404, http://www.dlqx.de/test
+
+Finished checking URLs after 1.00 second(s).
+Processed Directories/Files/Lines/Tokens/URLs: 3/7/42/491/7
+Sent HTTP GET Requests: 7
 ```
 
 ## [Usage](#usage)
 
 ```txt
-derl [-h] [-c] [-d] [-r RETRY] [-t TIMEOUT] [--version] [-v] [-vv] directory
+derl [-h] [-c] [-d] [-r RETRY] [-s] [-t TIMEOUT] [--version] [-v] [-vv] directory
 
 Dead URL searching utility
 
@@ -99,6 +113,7 @@ optional arguments:
   -c, --context                  showing up to 3 lines of context
   -d, --dispatch                 dispatching HTTP requests for every found URL
   -r RETRY, --retry RETRY        set how often to retry a request (default is 3)
+  -s, --stats                    track and print statistics at the end
   -t TIMEOUT, --timeout TIMEOUT  set timeout for requests in seconds (default is 10)
   --version                      show program's version number and exit
   -v, --verbose                  set loglevel to INFO

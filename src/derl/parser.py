@@ -47,6 +47,13 @@ def parse_args(args):
         type=int)
 
     parser.add_argument(
+        "-s",
+        "--stats",
+        action="store_true",
+        dest="stats",
+        help="track and print statistics at the end")
+
+    parser.add_argument(
         "-t",
         "--timeout",
         action="store",
