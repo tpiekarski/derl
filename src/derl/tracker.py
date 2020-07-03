@@ -23,6 +23,7 @@ class Tracker(metaclass=Singleton):
     start_time = None
     stop_time = None
     stats = Stats()
+    test = False
 
     def start(self):
         if self.start_time is None:
@@ -33,7 +34,18 @@ class Tracker(metaclass=Singleton):
             self.stop_time = perf_counter()
 
     def calc_time(self):
+        if self.test:
+            return -1
+
         return round(self.stop_time - self.start_time)
+
+    def reset(self):
+        self.start_time = 0
+        self.stop_time = 0
+        self.stats = Stats()
+
+    def set_test(self):
+        self.test = True
 
     def __str__(self):
         output = ""

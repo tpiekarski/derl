@@ -5,7 +5,8 @@
 #
 
 SHELL:=/bin/bash
-TEST_DIRECTORY=tests/test-directory/
+REFERENCE_DIRECTORY=tests/references
+TEST_DIRECTORY=tests/test-directory
 LINT_JOBS=0 # auto-detect number of processors
 
 .PHONY: build check clean commit test lint develop env install install-user lint report requirements \
@@ -75,7 +76,9 @@ uninstall:
 
 update-references:
 	$(info Updating reference output in 'tests/references')
-	derl $(TEST_DIRECTORY) > tests/references/output-without-context-without-dispatch.out
-	derl $(TEST_DIRECTORY) --context > tests/references/output-with-context-without-dispatch.out 
-	derl $(TEST_DIRECTORY) -d > tests/references/output-without-context-with-dispatch.out
-	derl $(TEST_DIRECTORY) --context --dispatch > tests/references/output-with-context-with-dispatch.out 
+	derl $(TEST_DIRECTORY) > $(REFERENCE_DIRECTORY)/output-without-context-without-dispatch.out
+	derl $(TEST_DIRECTORY) --context > $(REFERENCE_DIRECTORY)/output-with-context-without-dispatch.out 
+	derl $(TEST_DIRECTORY) --dispatch > $(REFERENCE_DIRECTORY)/output-without-context-with-dispatch.out
+	derl $(TEST_DIRECTORY) --context --dispatch > $(REFERENCE_DIRECTORY)/output-with-context-with-dispatch.out 
+	derl $(TEST_DIRECTORY) --stats > $(REFERENCE_DIRECTORY)/output-with-stats-without-dispatch.out
+	derl $(TEST_DIRECTORY) --stats --dispatch > $(REFERENCE_DIRECTORY)/output-with-stats-with-dispatch.out

@@ -14,15 +14,12 @@ class Stats():
     urls = 0
 
     def __str__(self):
-        output = ""
+        output = "Processed Directories/Files/Lines/Tokens/URLs: {0:d}/{1:d}/{2:d}/{3:d}/{4:d}".format(
+            self.directories, self.files, self.lines, self.tokens, self.urls
+        )
 
-        output += "---\n"
-        output += "Directories:\t{0}\n".format(self.directories)
-        output += "Files:\t\t{0}\n".format(self.files)
-        output += "Lines:\t\t{0}\n".format(self.lines)
-        output += "Tokens:\t\t{0}\n".format(self.tokens)
-        output += "URLs:\t\t{0}\n".format(self.urls)
-        output += "Requests:\t{0}\n".format(self.requests)
+        if self.requests > 0:
+            output += "\nSent HTTP GET Requests: {0:d}".format(self.urls)
 
         return output
 

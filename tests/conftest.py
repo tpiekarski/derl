@@ -5,9 +5,9 @@
 #
 
 """
-    Dummy conftest.py for derl.
+    conftest.py for derl.
 
-    Read more about conftest.py under: https://pytest.org/latest/plugins.html
+    Read more about conftest.py under: https://docs.pytest.org/en/latest/plugins.html
 """
 
 _TEST_DIRECTORY = "tests/test-directory"
