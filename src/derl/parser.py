@@ -51,7 +51,7 @@ def parse_args(args):
         "--stats",
         action="store_true",
         dest="stats",
-        help="Gather and print statistics at the end")
+        help="track and print statistics at the end")
 
     parser.add_argument(
         "-t",
