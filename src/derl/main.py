@@ -7,12 +7,14 @@
 
 import sys
 
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from logging import basicConfig, getLogger
+from os import cpu_count
 
 from derl.checker import check_arguments
 from derl.collector import collect_context
 from derl.dispatcher import request
-from derl.executor import multi_process
+from derl.executor import execute
 from derl.filterer import filter_not_matching
 from derl.outputer import output
 from derl.parser import parse_args
@@ -42,18 +44,22 @@ def main(args: list):
     setup_logging(args.loglevel)
     check_arguments(args)
 
+    max_process = cpu_count()
+
     _tracker.start()
     processed_directories = process_directory(args.directory, [])
-    # searched_files = search_urls(processed_directories)
-    searched_files = multi_process(processed_directories, search_urls, 4)
 
-    filtered_files = filter_not_matching(searched_files)
+    with ProcessPoolExecutor() as process_executor:
+        searched_files = execute(process_executor, search_urls, processed_directories, max_process)
+        filtered_files = filter_not_matching(searched_files)
+
+        if args.context:
+            filtered_files = execute(process_executor, collect_context, filtered_files, max_process)
 
     if args.dispatch:
-        filtered_files = request(filtered_files, args.timeout)
-
-    if args.context:
-        filtered_files = collect_context(filtered_files)
+        with ThreadPoolExecutor() as thread_executor:
+            max_threads = max_process * 4
+            filtered_files = execute(thread_executor, request, filtered_files, max_threads)
 
     _tracker.stop()
     output(filtered_files, args.stats)

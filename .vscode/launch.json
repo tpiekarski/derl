@@ -25,8 +25,9 @@
             "request": "launch",
             "module": "derl.main",
             "args": [
+                "--dispatch",
                 "--stats",
-                "--verbose",
+                "--very-verbose",
                 "man2"
             ],
             "internalConsoleOptions": "openOnSessionStart",
