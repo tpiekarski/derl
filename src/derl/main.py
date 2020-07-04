@@ -12,6 +12,7 @@ from logging import basicConfig, getLogger
 from derl.checker import check_arguments
 from derl.collector import collect_context
 from derl.dispatcher import request
+from derl.executor import multi_process
 from derl.filterer import filter_not_matching
 from derl.outputer import output
 from derl.parser import parse_args
@@ -43,7 +44,9 @@ def main(args: list):
 
     _tracker.start()
     processed_directories = process_directory(args.directory, [])
-    searched_files = search_urls(processed_directories)
+    # searched_files = search_urls(processed_directories)
+    searched_files = multi_process(processed_directories, search_urls, 4)
+
     filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
