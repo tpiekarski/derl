@@ -65,7 +65,7 @@ def parse_args(args: list) -> Namespace:
     parser.add_argument(
         "--version",
         action="version",
-        version="derl {ver}".format(ver=__version__))
+        version="derl {0}".format(__version__))
 
     parser.add_argument(
         "-v",

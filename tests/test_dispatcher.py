@@ -30,21 +30,21 @@ class DispatcherTest(TestCase):
     def test_dispatcher_without_any_files(self: "DispatcherTest"):
         self.assertEqual(request([]), [])
 
-    @patch("requests.get")
+    @patch("requests.Session.get")
     def test_timeout(self: "DispatcherTest", mocked_get: "Mock"):
         mocked_get.side_effect = Timeout
 
         files = request(_build_test_files())
         self.assertEqual(files[0].urls[0].status_code, 0)
 
-    @patch("requests.get")
+    @patch("requests.Session.get")
     def test_too_many_redirects(self: "DispatcherTest", mocked_get: "Mock"):
         mocked_get.side_effect = TooManyRedirects
 
         files = request(_build_test_files())
         self.assertEqual(files[0].urls[0].status_code, 0)
 
-    @patch("requests.get")
+    @patch("requests.Session.get")
     def test_connection_error(self: "DispatcherTest", mocked_get: "Mock"):
         mocked_get.side_effect = RequestConnectionError
 
