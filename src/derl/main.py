@@ -7,7 +7,7 @@
 
 import sys
 
-from logging import basicConfig, getLogger
+from logging import basicConfig, getLogger, ERROR
 
 from derl.checker import check_arguments
 from derl.collector import collect_context
@@ -35,6 +35,9 @@ def setup_logging(loglevel: int):
         stream=sys.stdout
     )
 
+    if loglevel is None:
+        getLogger("urllib3").setLevel(ERROR)
+
 
 def main(args: list):
     args = parse_args(args)
@@ -47,7 +50,7 @@ def main(args: list):
     filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
-        filtered_files = request(filtered_files, args.timeout)
+        filtered_files = request(filtered_files, args.retry, args.timeout)
 
     if args.context:
         filtered_files = collect_context(filtered_files)

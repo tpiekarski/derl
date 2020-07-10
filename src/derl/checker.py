@@ -25,7 +25,7 @@ def is_directory(value: str) -> bool:
     return path.isdir(value)
 
 
-def is_retry_value(value: str) -> bool:
+def is_retry_value(value: int) -> bool:
     return 0 < value <= 10
 
 
