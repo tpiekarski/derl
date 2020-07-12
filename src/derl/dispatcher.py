@@ -4,6 +4,7 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
+import asyncio
 import logging
 
 from aiohttp import ClientTimeout
@@ -39,7 +40,7 @@ async def _get_status_code(location: str, client: RetryClient, retry: int) -> in
     return status_code
 
 
-async def request(files: list, retry: int = _DEFAULT_RETRY, timeout: int = _DEFAULT_TIMEOUT) -> list:
+async def _request(files: list, retry: int = _DEFAULT_RETRY, timeout: int = _DEFAULT_TIMEOUT) -> list:
     if len(files) == 0:
         _logger.debug("No matches for HTTP(S) requests")
         return []
@@ -54,3 +55,12 @@ async def request(files: list, retry: int = _DEFAULT_RETRY, timeout: int = _DEFA
                 current_url.status_code = await _get_status_code(current_url.location, client, retry)
 
         return files
+
+
+def run_loop(files: list, retry: int, timeout: int) -> list:
+    _logger.info("Starting async dispatcher...")
+
+    event_loop = asyncio.get_event_loop()
+    files = event_loop.run_until_complete(_request(files, retry, timeout))
+
+    return files
