@@ -40,7 +40,7 @@ def setup_logging(loglevel: int):
         getLogger("urllib3").setLevel(ERROR)
 
 
-def main(args: list):
+async def main(args: list):
     args = parse_args(args)
     setup_logging(args.loglevel)
     check_arguments(args)
@@ -51,7 +51,7 @@ def main(args: list):
     filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
-        filtered_files = request(filtered_files, args.retry, args.timeout)
+        filtered_files = await request(filtered_files, args.retry, args.timeout)
 
     if args.context:
         filtered_files = collect_context(filtered_files)

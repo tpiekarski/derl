@@ -63,4 +63,5 @@
         "ultricies",
         "vestibulum"
     ],
+    "python.pythonPath": ".venv/bin/python",
 }
