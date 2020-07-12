@@ -5,6 +5,7 @@
 #
 
 
+import asyncio
 import sys
 
 from logging import basicConfig, getLogger, ERROR
@@ -62,7 +63,7 @@ def main(args: list):
 
 
 def run():
-    main(sys.argv[1:])
+    asyncio.run(main(sys.argv[1:]))
 
 
 if __name__ == "__main__":
