@@ -15,6 +15,7 @@
             "Twilio",
             "Youtube",
             "aiohttp",
+            "aiounittest",
             "argparse",
             "asyncio",
             "cheatsheet",
