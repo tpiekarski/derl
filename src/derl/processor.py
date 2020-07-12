@@ -22,7 +22,7 @@ _tracker = get_tracker()
 
 
 def process_file(file: TextIO) -> list:
-    _logger.debug("Spliting current file %s into lines...", file.name)
+    _logger.debug("Splitting current file %s into lines...", file.name)
     _tracker.stats.inc_files()
 
     try:
