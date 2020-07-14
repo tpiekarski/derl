@@ -34,7 +34,9 @@ class DispatcherTest(AsyncTestCase):
 
     # Following tests "seem" to work, but they do not! Tests do not wait for coroutines,
     # although AsyncTestCase is used and upper two tests are working. Tried solutions:
-    #  - pytest-asyncio - It does not work inside classes at all -> Question for StackOverflow
+    #  - pytest-asyncio - It does not work inside classes at all
+    #    (See Issue at GitHub: https://github.com/pytest-dev/pytest-asyncio/issues/77)
+    #
     #  - IsolatedAsyncioTestCase - Class will be available with Python > 3.8.x
     #  - aiounittest - Seems to work, but only without Mocks
     #

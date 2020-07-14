@@ -6,6 +6,7 @@
 
 import asyncio
 import logging
+import sys
 
 from aiohttp import ClientTimeout
 from aiohttp.client_exceptions import ClientConnectionError, TooManyRedirects
@@ -60,7 +61,12 @@ async def _request(files: list, retry: int = _DEFAULT_RETRY, timeout: int = _DEF
 def run_loop(files: list, retry: int, timeout: int) -> list:
     _logger.info("Starting async dispatcher...")
 
-    event_loop = asyncio.get_event_loop()
-    files = event_loop.run_until_complete(_request(files, retry, timeout))
+    if (sys.version_info.major == 3 and sys.version_info.minor >= 7):
+        # Running Event Loop, Python >= 3.7.x
+        files = asyncio.run(_request(files, retry, timeout))
+    else:
+        # Running Event Loop, Python < 3.7.x
+        event_loop = asyncio.get_event_loop()
+        files = event_loop.run_until_complete(_request(files, retry, timeout))
 
     return files
