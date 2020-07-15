@@ -5,7 +5,7 @@
 #
 
 
-class Stats():
+class Stats:
     directories = 0
     files = 0
     lines = 0

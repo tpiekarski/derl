@@ -11,7 +11,7 @@ from logging import basicConfig, getLogger, ERROR
 
 from derl.checker import check_arguments
 from derl.collector import collect_context
-from derl.dispatcher import request
+from derl.dispatcher import run_loop
 from derl.filterer import filter_not_matching
 from derl.outputer import output
 from derl.parser import parse_args
@@ -50,8 +50,7 @@ def main(args: list):
     filtered_files = filter_not_matching(searched_files)
 
     if args.dispatch:
-        filtered_files = request(filtered_files, args.retry, args.timeout)
-
+        filtered_files = run_loop(filtered_files, args.retry, args.timeout)
     if args.context:
         filtered_files = collect_context(filtered_files)
 
