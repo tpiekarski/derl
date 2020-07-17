@@ -5,6 +5,7 @@
 #
 
 from logging import getLogger
+
 from derl.tracker import get_tracker
 
 _logger = getLogger(__name__)

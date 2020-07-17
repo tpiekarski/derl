@@ -11,9 +11,8 @@ from aiohttp import ClientTimeout
 from aiohttp.client_exceptions import ClientConnectionError, TooManyRedirects
 from aiohttp_retry import RetryClient
 
-from derl.tracker import get_tracker
 from derl import __version__
-
+from derl.tracker import get_tracker
 
 _logger = logging.getLogger(__name__)
 _tracker = get_tracker()

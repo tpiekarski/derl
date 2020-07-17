@@ -5,10 +5,10 @@
 #
 
 import sys
-
 from argparse import Namespace
 from logging import getLogger
 from os import path
+
 from magic import from_file
 from validators import url
 

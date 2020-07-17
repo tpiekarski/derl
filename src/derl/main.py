@@ -6,8 +6,7 @@
 
 
 import sys
-
-from logging import basicConfig, getLogger, ERROR
+from logging import ERROR, basicConfig, getLogger
 
 from derl.checker import check_arguments
 from derl.collector import collect_context

@@ -224,6 +224,7 @@ derl tests/test-directory/ --context --dispatch > tests/references/output-with-c
 
 ## [Links](#links)
 
+- Blog, eshlox, [VS Code - sort Python imports automatically](https://eshlox.net/2019/12/02/vscode-sort-python-imports-automatically)
 - Digital Ocean, [How-To Use String Formatters in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-string-formatters-in-python-3)
 - Findwork, [Advanced usage of Python requests - timeouts, retries, hooks](https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/)
 - Geeks for geeks, [Testing Output to stdout](https://www.geeksforgeeks.org/python-testing-output-to-stdout/)
