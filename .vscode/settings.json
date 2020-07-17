@@ -1,5 +1,8 @@
 {
     "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
         "editor.rulers": [
             100,
             120
