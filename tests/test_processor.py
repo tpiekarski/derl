@@ -6,8 +6,8 @@
 
 from unittest import TestCase
 
-from derl.processor import process_directory, process_file, process_line
 from conftest import _TEST_DIRECTORY
+from derl.processor import process_directory, process_file, process_line
 
 
 class ProcessorTest(TestCase):

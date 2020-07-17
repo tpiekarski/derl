@@ -6,7 +6,8 @@
 
 from logging import getLogger
 from pathlib import Path
-from re import compile as rcompile, IGNORECASE
+from re import IGNORECASE
+from re import compile as rcompile
 from typing import TextIO
 
 from derl.checker import is_text_file, is_url

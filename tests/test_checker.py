@@ -4,8 +4,8 @@
 # Copyright 2020 Thomas Piekarski <t.piekarski@deloquencia.de>
 #
 
-from unittest import TestCase
 from pathlib import Path
+from unittest import TestCase
 
 from derl.checker import is_directory, is_text_file
 
