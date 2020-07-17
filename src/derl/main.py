@@ -61,7 +61,10 @@ def main(args: list):
 
 
 def run():
-    main(sys.argv[1:])
+    try:
+        main(sys.argv[1:])
+    except KeyboardInterrupt:
+        _logger.info("User interruped execution.")
 
 
 if __name__ == "__main__":
