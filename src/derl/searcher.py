@@ -24,6 +24,6 @@ def search_urls(files: list) -> list:
         with open(current_entry.filename, "r", encoding=_DEFAULT_ENCODING) as current_file:
             current_entry.urls = process_file(current_file)
 
-    _logger.debug("Searched %i files", len(files))
+    _logger.info("Finished searching %i files", len(files))
 
     return files

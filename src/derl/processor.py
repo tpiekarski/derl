@@ -10,7 +10,7 @@ from re import IGNORECASE
 from re import compile as rcompile
 from typing import TextIO
 
-from derl.checker import is_text_file, is_url
+from derl.checker import is_text_file, is_valid_url
 from derl.model.file import File
 from derl.model.url import URL
 from derl.tracker import get_tracker
@@ -69,12 +69,13 @@ def process_line(file: TextIO, line: tuple, urls: list) -> list:
 
 
 def process_token(file: TextIO, token: str, line_number: int) -> URL:
+    _logger.debug("Processing token %s...", token)
     _tracker.stats.inc_tokens()
 
     match = _pattern.match(token)
     url = None
 
-    if match and is_url(match.string):
+    if match and is_valid_url(match.string):
         _logger.info("Found a match (%s) in file '%s'", match.string, file.name)
         _tracker.stats.inc_urls()
         url = URL(match.string, line_number)

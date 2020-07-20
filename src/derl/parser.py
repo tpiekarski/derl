@@ -5,13 +5,17 @@
 #
 
 from argparse import ArgumentParser, HelpFormatter, Namespace
-from logging import DEBUG, INFO
+from logging import DEBUG, INFO, getLogger
 
 from derl import __version__
 from derl.dispatcher import _DEFAULT_RETRY, _DEFAULT_TIMEOUT
 
+_logger = getLogger(__name__)
+
 
 def parse_args(args: list) -> Namespace:
+    _logger.debug("Parsing command line arguments")
+
     parser = ArgumentParser(
         prog="derl",
         formatter_class=lambda prog: HelpFormatter(prog, max_help_position=35, width=90),

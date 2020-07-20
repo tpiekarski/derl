@@ -44,7 +44,7 @@ async def _request(files: list, retry: int = _DEFAULT_RETRY, timeout: int = _DEF
         _logger.debug("No matches for HTTP(S) requests")
         return []
 
-    _logger.debug("Timeout for all HTTP(S) requests is %i seconds", timeout)
+    _logger.debug("Timeout is %i seconds and retry is %i for all HTTP(S) requests", timeout, retry)
 
     client_timeout = ClientTimeout(total=timeout)
 

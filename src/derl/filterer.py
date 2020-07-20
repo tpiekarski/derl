@@ -14,6 +14,7 @@ def filter_not_matching(files: list) -> list:
 
     for current_file in files:
         if current_file.contains_urls():
+            _logger.debug("%s contains URLs", current_file.filename)
             filtered_files.append(current_file)
 
     del files
