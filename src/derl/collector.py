@@ -14,6 +14,7 @@ _DEFAULT_ENCODING = "utf-8"
 
 
 def _extract_context(url: URL, lines: list) -> list:
+    _logger.debug("Extracting context for the URL %s at line number %i", url.location, url.line_number)
     context = []
     line_index = url.line_number - 1
 
@@ -29,7 +30,9 @@ def _extract_context(url: URL, lines: list) -> list:
 
 
 def collect_context(files: list) -> list:
+    _logger.debug("Collecting context")
     for current_file in files:
+        _logger.debug("Collecting context for file %s", current_file.filename)
         for current_url in current_file.urls:
             with open(current_file.filename, "r", encoding=_DEFAULT_ENCODING) as open_file:
                 lines = open_file.readlines()

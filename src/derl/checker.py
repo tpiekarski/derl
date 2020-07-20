@@ -19,40 +19,43 @@ _INVALID_RETRY = -3
 _logger = getLogger(__name__)
 
 
-def is_directory(value: str) -> bool:
+def _is_directory(value: str) -> bool:
     _logger.debug("Checking provided directory %s", value)
 
     return path.isdir(value)
 
 
-def is_retry_value(value: int) -> bool:
+def _is_retry_value(value: int) -> bool:
+    _logger.debug("Checking provided retry value %i", value)
     return 0 < value <= 10
 
 
+def _is_timeout_value(value: int) -> bool:
+    _logger.debug("Checking provided timeout value %i", value)
+    return value > 0
+
+
 def is_text_file(file: str) -> bool:
-    _logger.debug("Checking file %s", file)
+    _logger.debug("Checking provided file %s", file)
     mimetype = from_file(str(file), mime=True)
 
     return file.is_file() and mimetype[:4] == "text"
 
 
-def is_timeout_value(value: int) -> bool:
-    return value > 0
-
-
-def is_url(value: str) -> bool:
+def is_valid_url(value: str) -> bool:
+    _logger.debug("Checking provided URL %s", value)
     return url(value)
 
 
 def check_arguments(args: Namespace):
-    if not is_timeout_value(args.timeout):
+    if not _is_timeout_value(args.timeout):
         _logger.error("Invalid timeout, timeout must be greater than 0")
         sys.exit(_INVALID_TIMEOUT)
 
-    if not is_retry_value(args.retry):
+    if not _is_retry_value(args.retry):
         _logger.error("Invalid retry, retry must be greater than 0 and less or equal than 10")
         sys.exit(_INVALID_RETRY)
 
-    if not is_directory(args.directory):
+    if not _is_directory(args.directory):
         _logger.error("Cannot access '%s': No such directory", args.directory)
         sys.exit(_INVALID_DIRECTORY)
